@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 
 /**
@@ -18,6 +19,18 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class MainButtonsFragment extends Fragment {
+
+    //View in order to access the Buttons
+    View view;
+
+    //Buttons added in fragment_main_buttons.xml
+    //instantiated in public void onCreate() with init()
+    Button RemindMe;
+    Button Schedule;
+    Button NotesButton;
+    Button NotesConf;
+
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -54,10 +67,21 @@ public class MainButtonsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        init();
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+    }
+
+    public void init(){
+        //TODO:
+        //Create a new view in order to add the Buttons. Still not sure about the arguments and where to create it though.
+        //view = onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState);
+        Button RemindMe = (Button) view.findViewById(R.id.RemindMeButton) ;
+        Button Schedule = (Button) view.findViewById(R.id.ScheduleButton);
+        Button NotesButton = (Button) view.findViewById(R.id.NotesButton);
+        Button NotesConf = (Button) view.findViewById(R.id.NotesConfidentialButton);
     }
 
     @Override

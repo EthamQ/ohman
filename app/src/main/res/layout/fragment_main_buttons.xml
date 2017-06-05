@@ -5,9 +5,46 @@
     tools:context="com.instancedev.aceuron.aceuron.MainButtonsFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+
+
+
+    <!--"Remind me" Button, Top Left -->
+    <Button
+        android:id="@+id/RemindMeButton"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:text="Remind me"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="35dp"/>
+
+    <!--"Class schedule" Button, Top Right -->
+    <Button
+        android:id="@+id/ScheduleButton"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:text="Class schedule"
+        android:layout_marginLeft="205dp"
+        android:layout_marginTop="35dp"/>
+
+    <!--"Notes" Button, Bottom Left -->
+    <Button
+        android:id="@+id/NotesButton"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:text="Notes"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="265dp"/>
+
+    <!--"Notes confidential" Button, Bottom Right -->
+    <Button
+        android:id="@+id/NotesConfidentialButton"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:text="Notes confidential"
+        android:layout_marginLeft="205dp"
+        android:layout_marginTop="265dp"/>
+
+
+
 
 </FrameLayout>

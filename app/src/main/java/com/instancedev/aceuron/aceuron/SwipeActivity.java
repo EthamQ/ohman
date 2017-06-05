@@ -8,11 +8,11 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 
-public class Viewpager extends FragmentActivity {
+public class SwipeActivity extends FragmentActivity {
     /**
      * The number of pages (wizard steps) to show in this demo.
      */
-    private static final int NUM_PAGES = 5;
+    private static final int NUM_PAGES = 3;
 
     /**
      * The pager widget, which handles animation and allows swiping horizontally to access previous
@@ -28,7 +28,7 @@ public class Viewpager extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.viewpager);
+        setContentView(R.layout.swipe_activity);
 
         // Instantiate a ViewPager and a PagerAdapter.
         mPager = (ViewPager) findViewById(R.id.pager);
@@ -58,16 +58,37 @@ public class Viewpager extends FragmentActivity {
         }
 
         @Override
-        public Fragment getItem(int position) {
-            return new ViewFragment();
-        }
-
-        @Override
         public int getCount() {
+
             return NUM_PAGES;
         }
+
+        //TODO: create SettingsFragment
+        /**
+         *
+         * @param position
+         * @return
+         * position 0: return MainButtonsFragment
+         * position 1: return ViewFragment
+         * position 2: return SettingsFragment
+         */
+        @Override
+        public Fragment getItem(int position) {
+            switch (position) {
+                case 0:
+                    return MainButtonsFragment.newInstance("arg1", "arg2");
+                case 1:
+                    return ViewFragment.newInstance("arg1", "arg2");
+                //case 2:
+                //    return SettingsFragment.newInstance("arg1", "arg2");
+            }
+                    return new Fragment();
+            }
+        }
+
+
     }
-}
+
 
 
 
