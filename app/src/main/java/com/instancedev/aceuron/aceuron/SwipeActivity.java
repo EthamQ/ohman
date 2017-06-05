@@ -1,5 +1,6 @@
 package com.instancedev.aceuron.aceuron;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -8,7 +9,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 
-public class SwipeActivity extends FragmentActivity {
+public class SwipeActivity extends FragmentActivity implements MainButtonsFragment.OnFragmentInteractionListener {
     /**
      * The number of pages (wizard steps) to show in this demo.
      */
@@ -24,6 +25,11 @@ public class SwipeActivity extends FragmentActivity {
      * The pager adapter, which provides the pages to the view pager widget.
      */
     private PagerAdapter mPagerAdapter;
+
+    @Override
+    public void onFragmentInteraction(Uri uri){
+        // TODO
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -20,11 +20,11 @@ import android.widget.Button;
  */
 public class MainButtonsFragment extends Fragment {
 
-    //View in order to access the Buttons
+    // View in order to access the Buttons, see onCreateView
     View view;
 
-    //Buttons added in fragment_main_buttons.xml
-    //instantiated in public void onCreate() with init()
+    // Buttons added in fragment_main_buttons.xml
+    // instantiated in public void onCreateView() with init()
     Button RemindMe;
     Button Schedule;
     Button NotesButton;
@@ -67,7 +67,7 @@ public class MainButtonsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        init();
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -75,19 +75,19 @@ public class MainButtonsFragment extends Fragment {
     }
 
     public void init(){
-        //TODO:
-        //Create a new view in order to add the Buttons. Still not sure about the arguments and where to create it though.
-        //view = onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState);
         Button RemindMe = (Button) view.findViewById(R.id.RemindMeButton) ;
         Button Schedule = (Button) view.findViewById(R.id.ScheduleButton);
         Button NotesButton = (Button) view.findViewById(R.id.NotesButton);
         Button NotesConf = (Button) view.findViewById(R.id.NotesConfidentialButton);
+
+        // TODO Add functionality to buttons
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        view = inflater.inflate(R.layout.fragment_main_buttons, container, false);
+        init();
         return inflater.inflate(R.layout.fragment_main_buttons, container, false);
     }
 
