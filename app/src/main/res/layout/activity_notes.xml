@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.instancedev.aceuron.aceuron.NotesActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:text="Notes"
+        android:textSize="30dp"
+
+        tools:layout_constraintTop_creator="1"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+         />
+
+    <Button
+        android:id="@+id/AddNote"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:text="+ New Note"
+        app:layout_constraintTop_toTopOf="@+id/textView"
+        app:layout_constraintLeft_toRightOf="@+id/textView"
+        android:layout_marginLeft="90dp"
+        />
+
+</android.support.constraint.ConstraintLayout>

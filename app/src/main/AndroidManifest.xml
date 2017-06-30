@@ -16,7 +16,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity
+            android:name=".NotesBasicActivity"
+            android:label="@string/title_activity_notes_basic"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".NotesActivity"></activity>
     </application>
 
 </manifest>
