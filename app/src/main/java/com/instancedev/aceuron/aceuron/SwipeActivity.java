@@ -85,8 +85,8 @@ public class SwipeActivity extends FragmentActivity implements MainButtonsFragme
                     return MainButtonsFragment.newInstance("arg1", "arg2");
                 case 1:
                     return ViewFragment.newInstance("arg1", "arg2");
-                //case 2:
-                //    return SettingsFragment.newInstance("arg1", "arg2");
+                case 2:
+                    return SettingsFragment.newInstance("arg1", "arg2");
             }
                     return new Fragment();
             }
