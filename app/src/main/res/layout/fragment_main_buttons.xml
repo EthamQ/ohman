@@ -26,7 +26,8 @@
         android:layout_marginLeft="205dp"
         android:layout_marginTop="35dp"/>
 
-    <!--"Notes" Button, Bottom Left -->
+    <!--"Notes" Button, Bottom Left
+     onCLick: supposed to open NotesActivity -->
     <Button
         android:id="@+id/NotesButton"
         android:layout_width="150dp"
@@ -34,8 +35,10 @@
         android:text="Notes"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="265dp"/>
+    <!--android:onClick="NotesActivity"-->
 
-    <!--"Notes confidential" Button, Bottom Right -->
+
+<!--"Notes confidential" Button, Bottom Right -->
     <Button
         android:id="@+id/NotesConfidentialButton"
         android:layout_width="150dp"

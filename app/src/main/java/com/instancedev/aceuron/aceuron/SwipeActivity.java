@@ -1,5 +1,6 @@
 package com.instancedev.aceuron.aceuron;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,6 +9,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.View;
+import android.widget.Button;
 
 public class SwipeActivity extends FragmentActivity implements MainButtonsFragment.OnFragmentInteractionListener {
     /**
@@ -82,15 +85,18 @@ public class SwipeActivity extends FragmentActivity implements MainButtonsFragme
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return MainButtonsFragment.newInstance("arg1", "arg2");
-                case 1:
                     return ViewFragment.newInstance("arg1", "arg2");
+                case 1:
+                    return MainButtonsFragment.newInstance("arg1", "arg2");
                 case 2:
                     return SettingsFragment.newInstance("arg1", "arg2");
             }
                     return new Fragment();
             }
         }
+
+
+
 
 
     }

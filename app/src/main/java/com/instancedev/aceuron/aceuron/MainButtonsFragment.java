@@ -1,6 +1,7 @@
 package com.instancedev.aceuron.aceuron;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -74,14 +75,30 @@ public class MainButtonsFragment extends Fragment {
         }
     }
 
+
+    //TODO: Problem:
+    //Why doesn't the constructor for the intent work? Does it simply not find the NotesActivity class
+    //(maybe because i didn't declare it correctly in the manifest?, please check!)
+    //Or an intent has to be set in an Activity (SwipeActivity) and not in a fragment. (i tried the same
+    //code in SwipeActivity but still didn't work)
     public void init(){
-        Button RemindMe = (Button) view.findViewById(R.id.RemindMeButton) ;
-        Button Schedule = (Button) view.findViewById(R.id.ScheduleButton);
-        Button NotesButton = (Button) view.findViewById(R.id.NotesButton);
-        Button NotesConf = (Button) view.findViewById(R.id.NotesConfidentialButton);
+        Button remindMe = (Button) view.findViewById(R.id.RemindMeButton) ;
+        Button schedule = (Button) view.findViewById(R.id.ScheduleButton);
+        Button notesButton = (Button) view.findViewById(R.id.NotesButton);
+        Button notesConf = (Button) view.findViewById(R.id.NotesConfidentialButton);
+
+        notesButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                startActivity(new Intent(this, NotesActivity.class));
+
+            }
+        });
 
         // TODO Add functionality to buttons
     }
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
