@@ -75,12 +75,6 @@ public class MainButtonsFragment extends Fragment {
         }
     }
 
-
-    //TODO: Problem:
-    //Why doesn't the constructor for the intent work? Does it simply not find the NotesActivity class
-    //(maybe because i didn't declare it correctly in the manifest?, please check!)
-    //Or an intent has to be set in an Activity (SwipeActivity) and not in a fragment. (i tried the same
-    //code in SwipeActivity but still didn't work)
     public void init(){
         Button remindMe = (Button) view.findViewById(R.id.RemindMeButton) ;
         Button schedule = (Button) view.findViewById(R.id.ScheduleButton);
@@ -90,29 +84,19 @@ public class MainButtonsFragment extends Fragment {
         notesButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                startActivity(new Intent(this, NotesActivity.class));
-
+                startActivity(new Intent(getActivity(), NotesActivity.class));
             }
         });
 
         // TODO Add functionality to buttons
     }
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_main_buttons, container, false);
         init();
-        return inflater.inflate(R.layout.fragment_main_buttons, container, false);
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
+        return view;
     }
 
     @Override
