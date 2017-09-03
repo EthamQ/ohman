@@ -76,6 +76,7 @@ public class MainButtonsFragment extends Fragment {
     }
 
     public void init(){
+
         Button remindMe = (Button) view.findViewById(R.id.RemindMeButton) ;
         Button schedule = (Button) view.findViewById(R.id.ScheduleButton);
         Button notesButton = (Button) view.findViewById(R.id.NotesButton);

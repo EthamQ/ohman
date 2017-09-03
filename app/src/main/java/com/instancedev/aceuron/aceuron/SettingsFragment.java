@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 /**
  * Created by rapha on 01.09.2017.
@@ -20,14 +21,23 @@ public class SettingsFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    //Define Buttons. Created in init()
+    Button setStart;
+    Button setDesign;
+    Button setPush;
+
+    public SettingsFragment(){
+
+    }
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle){
-        //if true, adds the swipe activity to container
-        //if false it sets the size etc and you can add it later
-        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.swipe_activity, container, false);
+        view = inflater.inflate(R.layout.fragment_settings, container, false);
+        init();
+        return view;
 
-        return rootView;
     }
 
 
@@ -40,5 +50,13 @@ public class SettingsFragment extends Fragment {
         fragment.setArguments(args);
 
         return fragment;
+    }
+
+    View view;
+    public void init(){
+        setStart = (Button) view.findViewById(R.id.SetStartButton);
+        setDesign = (Button) view.findViewById(R.id.SetDesignButton);
+        setPush = (Button) view.findViewById(R.id.SetPushButton);
+
     }
 }

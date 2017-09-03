@@ -6,7 +6,7 @@
     tools:context="com.instancedev.aceuron.aceuron.SettingsFragment">
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/SetStartButton"
         android:layout_width="250dp"
         android:layout_height="100dp"
         android:layout_centerHorizontal="true"
@@ -15,7 +15,7 @@
         />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/SetDesignButton"
         android:layout_width="250dp"
         android:layout_height="100dp"
         android:layout_centerHorizontal="true"
@@ -24,7 +24,7 @@
     />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/SetPushButton"
         android:layout_width="250dp"
         android:layout_height="100dp"
         android:layout_centerHorizontal="true"
