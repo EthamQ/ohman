@@ -12,11 +12,10 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.Button;
 
-public class SwipeActivity extends FragmentActivity implements MainButtonsFragment.OnFragmentInteractionListener {
-    /**
-     * The number of pages (wizard steps) to show in this demo.
-     */
-    private static final int NUM_PAGES = 3;
+public class SwipeActivity extends FragmentActivity implements
+        MainButtonsFragment.OnFragmentInteractionListener {
+
+    private static final int NUM_PAGES = 5;
 
     /**
      * The pager widget, which handles animation and allows swiping horizontally to access previous
@@ -57,10 +56,6 @@ public class SwipeActivity extends FragmentActivity implements MainButtonsFragme
         }
     }
 
-    /**
-     * A simple pager adapter that represents 5 ScreenSlidePageFragment objects, in
-     * sequence.
-     */
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
         public ScreenSlidePagerAdapter(FragmentManager fm) {
             super(fm);
@@ -68,11 +63,9 @@ public class SwipeActivity extends FragmentActivity implements MainButtonsFragme
 
         @Override
         public int getCount() {
-
             return NUM_PAGES;
         }
 
-        //TODO: create SettingsFragment
         /**
          *
          * @param position
@@ -85,21 +78,19 @@ public class SwipeActivity extends FragmentActivity implements MainButtonsFragme
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return ViewFragment.newInstance("arg1", "arg2");
+                    return MainButtonsFragment.newInstance();
                 case 1:
-                    return MainButtonsFragment.newInstance("arg1", "arg2");
+                    return SettingsFragment.newInstance();
                 case 2:
-                    return SettingsFragment.newInstance("arg1", "arg2");
+                case 3:
+                case 4:
+                    break; // TODO
             }
-                    return new Fragment();
-            }
+            return new Fragment();
         }
-
-
-
-
-
     }
+
+}
 
 
 
