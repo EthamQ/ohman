@@ -42,6 +42,10 @@ public class SwipeActivity extends FragmentActivity implements
         mPager.setAdapter(mPagerAdapter);
     }
 
+    public void setCurrentItem (int item, boolean smoothScroll) {
+        mPager.setCurrentItem(item, smoothScroll);
+    }
+
     @Override
     public void onBackPressed() {
         if (mPager.getCurrentItem() == 0) {

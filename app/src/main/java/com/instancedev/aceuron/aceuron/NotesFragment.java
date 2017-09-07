@@ -6,9 +6,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -18,6 +20,9 @@ public class NotesFragment extends Fragment {
 
     Button addnote;
     ListView listview;
+
+    ArrayList listViewItems;
+    ArrayAdapter listViewAdapter;
 
     public NotesFragment(){
 
@@ -35,6 +40,12 @@ public class NotesFragment extends Fragment {
     }
 
     public void init(){
+        listViewItems = new ArrayList<>();
+        listViewAdapter = new ArrayAdapter<String>(
+                getActivity().getApplicationContext(),
+                android.R.layout.simple_spinner_item, listViewItems);
+
+
         addnote = (Button) view.findViewById(R.id.button);
         listview = (ListView) view.findViewById(R.id.listView);
 
@@ -46,6 +57,8 @@ public class NotesFragment extends Fragment {
         });
 
         List<TextUtil.Note> notes = TextUtil.getAllNotes();
-        // TODO add to listview
+        for(TextUtil.Note n : notes) {
+            listViewAdapter.add(n.title);
+        }
     }
 }

@@ -1,7 +1,6 @@
 package com.instancedev.aceuron.aceuron;
 
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -44,6 +43,7 @@ public class MainButtonsFragment extends Fragment {
             @Override
             public void onClick(View v){
                 // TODO open NotesFragment
+                ((SwipeActivity) getActivity()).setCurrentItem(2, true);
             }
         });
 
