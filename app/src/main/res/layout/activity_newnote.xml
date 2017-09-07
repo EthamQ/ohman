@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.instancedev.aceuron.aceuron.NotesActivity">
+    tools:context="com.instancedev.aceuron.aceuron.NewNoteActivity">
 
     <TextView
         android:id="@+id/textView"
@@ -22,14 +22,24 @@
         app:layout_constraintTop_toTopOf="parent"
          />
 
-    <Button
-        android:id="@+id/AddNote"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:text="+ New Note"
-        app:layout_constraintTop_toTopOf="@+id/textView"
-        app:layout_constraintLeft_toRightOf="@+id/textView"
-        android:layout_marginLeft="90dp"
-        />
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="353dp"
+        android:layout_height="446dp"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:text="Note"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="104dp" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Title"
+        tools:layout_editor_absoluteX="134dp"
+        tools:layout_editor_absoluteY="20dp" />
 
 </android.support.constraint.ConstraintLayout>

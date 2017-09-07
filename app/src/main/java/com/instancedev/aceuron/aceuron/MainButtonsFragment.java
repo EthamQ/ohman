@@ -43,7 +43,7 @@ public class MainButtonsFragment extends Fragment {
         notesButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                startActivity(new Intent(getActivity(), NotesActivity.class));
+                // TODO open NotesFragment
             }
         });
 
