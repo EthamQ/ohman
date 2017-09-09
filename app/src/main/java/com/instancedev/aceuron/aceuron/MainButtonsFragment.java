@@ -44,6 +44,7 @@ public class MainButtonsFragment extends Fragment {
             public void onClick(View v){
                 // TODO open NotesFragment
                 ((SwipeActivity) getActivity()).setCurrentItem(2, true);
+
             }
         });
 
