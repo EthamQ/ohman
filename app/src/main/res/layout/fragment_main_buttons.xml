@@ -8,22 +8,23 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:background="@android:color/background_dark"
+        android:gravity="center"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="30dp"
-            android:gravity="center">
+            android:gravity="center"
+            android:padding="30dp">
 
             <Button
                 android:id="@+id/RemindMeButton"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:background="@color/colorBackground2"
+                android:background="@color/ButtonBackgroundDarkGrey"
                 android:text="Remind me"
-                android:textColor="@color/colorForeground" />
+                android:textColor="@color/TextColorGreen" />
 
             <Button
                 android:id="@+id/ScheduleButton"
@@ -38,8 +39,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="30dp"
-            android:gravity="center">
+            android:gravity="center"
+            android:padding="30dp">
 
             <Button
                 android:id="@+id/NotesButton"
@@ -63,8 +64,8 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorForeground"
-            android:text="v0.1" />
+            android:text="v0.1"
+            android:textColor="@color/colorForeground" />
 
     </LinearLayout>
 
