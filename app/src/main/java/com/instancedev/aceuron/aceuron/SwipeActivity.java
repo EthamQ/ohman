@@ -11,7 +11,7 @@ import android.support.v4.view.ViewPager;
 
 
 public class SwipeActivity extends FragmentActivity implements
-        MainButtonsFragment.OnFragmentInteractionListener {
+        MainButtonsFragment.OnFragmentInteractionListener, SettingsFragment.OnFragmentInteractionListener {
 
     private static final int NUM_PAGES = 5;
 
@@ -59,7 +59,9 @@ public class SwipeActivity extends FragmentActivity implements
     }
 
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
-        public ScreenSlidePagerAdapter(FragmentManager fm) {
+
+        public ScreenSlidePagerAdapter(FragmentManager fm)
+        {
             super(fm);
         }
 
@@ -84,7 +86,7 @@ public class SwipeActivity extends FragmentActivity implements
                 case 1:
                     return SettingsFragment.newInstance();
                 case 2:
-                    return NotesFragment.newInstance();
+                    //return NotesFragment.newInstance();
                 case 3:
                 case 4:
                     break; // TODO
