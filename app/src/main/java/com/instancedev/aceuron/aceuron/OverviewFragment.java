@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-public class ViewFragment extends Fragment {
+public class OverviewFragment extends Fragment {
 
     // TODO Possibly not needed anymore, delete
 
@@ -20,7 +20,7 @@ public class ViewFragment extends Fragment {
         return rootView;
     }
 
-    public static ViewFragment newInstance() {
-        return new ViewFragment();
+    public static OverviewFragment newInstance() {
+        return new OverviewFragment();
     }
 }

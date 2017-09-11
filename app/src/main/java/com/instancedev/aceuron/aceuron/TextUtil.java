@@ -94,9 +94,41 @@ public class TextUtil {
         return notes;
     }
 
-    public static List<Note> getAllNotes() {
-        // TODO
-        return null;
+    public static List<Note> getAllNotes(Context c, boolean encrypted) {
+        NotesDBUtil notesDB = new NotesDBUtil(c);
+        SQLiteDatabase db = notesDB.getReadableDatabase();
+
+
+        String[] projection = {
+                "title",
+                "content",
+                "encrypted"
+        };
+
+        String selection = "encrypted = ?";
+
+
+        Cursor cursor = db.query(
+                "notes",
+                projection,
+                selection,
+                null,
+                null,
+                null,
+                null
+        );
+
+        List notes = new ArrayList<Note>();
+        while(cursor.moveToNext()) {
+            Note n = new Note();
+            n.title = cursor.getString(cursor.getColumnIndexOrThrow("title"));
+            n.content = cursor.getString(cursor.getColumnIndexOrThrow("content"));
+            n.encrypted = cursor.getInt(cursor.getColumnIndexOrThrow("encrypted")) == 1;
+            notes.add(n);
+        }
+        cursor.close();
+
+        return notes;
     }
 
     public static void deleteNote() {

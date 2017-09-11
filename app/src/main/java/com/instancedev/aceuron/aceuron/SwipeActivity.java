@@ -75,7 +75,7 @@ public class SwipeActivity extends FragmentActivity implements
          * @param position
          * @return
          * position 0: return MainButtonsFragment
-         * position 1: return ViewFragment
+         * position 1: return OverviewFragment
          * position 2: return SettingsFragment
          */
         @Override
@@ -86,7 +86,7 @@ public class SwipeActivity extends FragmentActivity implements
                 case 1:
                     return SettingsFragment.newInstance();
                 case 2:
-                    //return NotesFragment.newInstance();
+                    return NotesFragment.newInstance();
                 case 3:
                 case 4:
                     break; // TODO

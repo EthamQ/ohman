@@ -23,7 +23,7 @@
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:background="@color/ButtonBackgroundDarkGrey"
-                android:text="Remind me"
+                android:text="@string/remind_button"
                 android:textColor="@color/TextColorGreen" />
 
             <Button
@@ -31,7 +31,7 @@
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:background="@color/colorBackground2"
-                android:text="Class\nSchedule"
+                android:text="@string/schedule_button"
                 android:textColor="@color/colorForeground" />
 
         </LinearLayout>
@@ -47,7 +47,7 @@
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:background="@color/colorBackground2"
-                android:text="Notes"
+                android:text="@string/notes_button"
                 android:textColor="@color/colorForeground" />
 
             <Button
@@ -55,7 +55,7 @@
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:background="@color/colorBackground2"
-                android:text="Notes\nconfidential"
+                android:text="@string/notes_button_conf"
                 android:textColor="@color/colorForeground" />
 
         </LinearLayout>
@@ -64,7 +64,7 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="v0.1"
+            android:text="@string/current_version"
             android:textColor="@color/colorForeground" />
 
     </LinearLayout>

@@ -16,7 +16,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
         android:background="@color/ButtonBackgroundDarkGrey"
-        android:text="Change your Home Screen"
+        android:text="@string/homescreen_settings_button"
         android:textColor="@color/TextColorGreen"
          />
 
@@ -28,7 +28,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:background="@color/ButtonBackgroundDarkGrey"
-        android:text="Design"
+        android:text="@string/design_settings_button"
         android:textColor="@color/TextColorGreen"
         android:textColorLink="@color/colorAccent"
         android:textSize="20sp" />
@@ -42,7 +42,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:background="@color/ButtonBackgroundDarkGrey"
-        android:text="Set Push authorization"
+        android:text="@string/push_settings_button"
         android:textColor="@color/TextColorGreen" />
 
 </RelativeLayout>

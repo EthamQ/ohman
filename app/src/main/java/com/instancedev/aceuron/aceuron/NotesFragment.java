@@ -49,6 +49,8 @@ public class NotesFragment extends Fragment {
         addnote = (Button) view.findViewById(R.id.button);
         listview = (ListView) view.findViewById(R.id.listView);
 
+
+
         addnote.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -56,9 +58,14 @@ public class NotesFragment extends Fragment {
             }
         });
 
-        List<TextUtil.Note> notes = TextUtil.getAllNotes();
+        //added getAllNotes constructor arguments
+        List<TextUtil.Note> notes = TextUtil.getAllNotes(this.getContext(), false);
         for(TextUtil.Note n : notes) {
             listViewAdapter.add(n.title);
         }
+
+        //Added by Raphael
+        listview.setAdapter(listViewAdapter);
+        //
     }
 }
