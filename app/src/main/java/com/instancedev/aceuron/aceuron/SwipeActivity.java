@@ -88,6 +88,7 @@ public class SwipeActivity extends FragmentActivity implements
                 case 2:
                     return NotesFragment.newInstance();
                 case 3:
+                    return OverviewFragment.newInstance();
                 case 4:
                     break; // TODO
             }

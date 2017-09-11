@@ -18,7 +18,7 @@ public class NotesFragment extends Fragment {
 
     View view;
 
-    Button addnote;
+    Button addNote;
     ListView listview;
 
     ArrayList listViewItems;
@@ -46,12 +46,12 @@ public class NotesFragment extends Fragment {
                 android.R.layout.simple_spinner_item, listViewItems);
 
 
-        addnote = (Button) view.findViewById(R.id.button);
+        addNote = (Button) view.findViewById(R.id.AddNoteButton);
         listview = (ListView) view.findViewById(R.id.listView);
 
 
 
-        addnote.setOnClickListener(new View.OnClickListener(){
+        addNote.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 startActivity(new Intent(getActivity(), NewNoteActivity.class));

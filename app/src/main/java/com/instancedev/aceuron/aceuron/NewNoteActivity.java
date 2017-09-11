@@ -10,6 +10,7 @@ public class NewNoteActivity extends AppCompatActivity {
 
     Button saveButton;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

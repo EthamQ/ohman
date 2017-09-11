@@ -6,7 +6,7 @@
     <string name="title_activity_notes_basic_activitz">NotesBasicActivitz</string>
     <string name="title_activity_notes_basic">NotesBasicActivity</string>
 
-    <!-- MainButtonsFragment-->
+    <!-- MainButtonsFragment / fragment_main_buttons.xml-->
     <string name="notes_button">Notes</string>
     <string name="notes_button_conf">Notes\nconfidential</string>
     <string name="schedule_button">Class\nSchedule</string>
@@ -14,9 +14,13 @@
     <string name="current_version">v0.1</string>
 
 
-    <!-- SettingsFragment-->
+    <!-- SettingsFragment / fragment_settings.xml-->
     <string name="homescreen_settings_button">Change your Home Screen</string>
     <string name="design_settings_button">Design</string>
     <string name="push_settings_button">Set Push authorization</string>
+
+    <!-- NotesFragment / fragment_settings.xml-->
+    <string name="add_note_button">Add note</string>
+
 
 </resources>
