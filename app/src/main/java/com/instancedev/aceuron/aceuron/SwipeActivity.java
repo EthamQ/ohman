@@ -92,6 +92,7 @@ public class SwipeActivity extends FragmentActivity implements
                     break; // TODO
             }
             return new Fragment();
+
         }
     }
 
