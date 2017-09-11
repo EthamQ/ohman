@@ -11,9 +11,10 @@ import android.support.v4.view.ViewPager;
 
 
 public class SwipeActivity extends FragmentActivity implements
-        MainButtonsFragment.OnFragmentInteractionListener, SettingsFragment.OnFragmentInteractionListener {
+        MainButtonsFragment.OnFragmentInteractionListener, SettingsFragment.OnFragmentInteractionListener,
+NotesFragment.OnFragmentInteractionListener, NotesEncryptedFragment.OnFragmentInteractionListener{
 
-    private static final int NUM_PAGES = 5;
+    private static final int NUM_PAGES = 7;
 
     /**
      * The pager widget, which handles animation and allows swiping horizontally to access previous
@@ -88,8 +89,11 @@ public class SwipeActivity extends FragmentActivity implements
                 case 2:
                     return NotesFragment.newInstance();
                 case 3:
-                    return OverviewFragment.newInstance();
+                    return NotesEncryptedFragment.newInstance();
                 case 4:
+                    return OverviewFragment.newInstance();
+                case 5:
+                case 6:
                     break; // TODO
             }
             return new Fragment();

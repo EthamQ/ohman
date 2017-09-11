@@ -1,5 +1,6 @@
 package com.instancedev.aceuron.aceuron;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,7 +16,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class NotesFragment extends Fragment {
+/**
+ * A simple {@link Fragment} subclass.
+ * Activities that contain this fragment must implement the
+ * {@link NotesEncryptedFragment.OnFragmentInteractionListener} interface
+ * to handle interaction events.
+ * Use the {@link NotesEncryptedFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class NotesEncryptedFragment extends Fragment {
 
     View view;
 
@@ -25,7 +34,7 @@ public class NotesFragment extends Fragment {
     ArrayList listViewItems;
     ArrayAdapter listViewAdapter;
 
-    public NotesFragment(){
+    public NotesEncryptedFragment(){
 
     }
 
@@ -59,15 +68,15 @@ public class NotesFragment extends Fragment {
             }
         });
 
-        //added getAllNotes constructor arguments
-        List<TextUtil.Note> notes = TextUtil.getAllNotes(this.getContext(), false);
+
+        List<TextUtil.Note> notes = TextUtil.getAllNotes(this.getContext(), true);
         for(TextUtil.Note n : notes) {
             listViewAdapter.add(n.title);
         }
 
-        //Added by Raphael
+
         listview.setAdapter(listViewAdapter);
-        //
+
     }
 
     public interface OnFragmentInteractionListener {
