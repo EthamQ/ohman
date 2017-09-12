@@ -44,6 +44,8 @@ public class TextUtil {
             "content TEXT, " +
             "encrypted INTEGER)";
 
+
+
     // You can get the context with getContext();
     public static long insertNote(Context c, String title, String content, boolean encrypted) {
         NotesDBUtil notesDB = new NotesDBUtil(c);
@@ -134,8 +136,36 @@ public class TextUtil {
         return notes;
     }
 
-    public static void deleteNote() {
-        // TODO
+    //no idea if this makes any sense lol
+    public static void deleteNote(Context c, String title) {
+        NotesDBUtil notesDB = new NotesDBUtil(c);
+        SQLiteDatabase db = notesDB.getReadableDatabase();
+
+        //temporary false
+        List notes = getAllNotes(c, false);
+
+        String[] projection = {
+                "title",
+                "content",
+                "encrypted"
+        };
+
+        String selection = "title = ?";
+        String[] selectionArgs = { title };
+
+        Cursor cursor = db.query(
+                "notes",
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null
+        );
+        while(cursor.moveToNext()){
+            db.delete("notes", "title" + " = " + title, null);
+        }
+
     }
 
     /* Security related utilities */
