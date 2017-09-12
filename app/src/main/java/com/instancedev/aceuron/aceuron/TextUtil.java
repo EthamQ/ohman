@@ -106,13 +106,16 @@ public class TextUtil {
         };
 
         String selection = "encrypted = ?";
+        String encryptedString = encrypted + "";
+        String[] selectionArgs = { encryptedString };
+
 
 
         Cursor cursor = db.query(
                 "notes",
                 projection,
                 selection,
-                null,
+                selectionArgs,
                 null,
                 null,
                 null

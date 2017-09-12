@@ -64,6 +64,7 @@ public class NotesEncryptedFragment extends Fragment {
         addNote.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                NewNoteActivity.encrypt();
                 startActivity(new Intent(getActivity(), NewNoteActivity.class));
             }
         });
