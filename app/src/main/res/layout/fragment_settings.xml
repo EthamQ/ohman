@@ -11,10 +11,10 @@
 
     <Button
         android:id="@+id/SetStartButton"
-        android:layout_width="250dp"
-        android:layout_height="100dp"
+        android:layout_width="@dimen/settings_button_width"
+        android:layout_height="@dimen/settings_button_height"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="@dimen/settings_margin_top"
         android:background="@color/ButtonBackgroundDarkGrey"
         android:text="@string/homescreen_settings_button"
         android:textColor="@color/TextColorGreen"
@@ -22,11 +22,11 @@
 
     <Button
         android:id="@+id/SetDesignButton"
-        android:layout_width="250dp"
-        android:layout_height="100dp"
+        android:layout_width="@dimen/settings_button_width"
+        android:layout_height="@dimen/settings_button_height"
         android:layout_below="@+id/SetStartButton"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="@dimen/settings_margin_between_buttons"
         android:background="@color/ButtonBackgroundDarkGrey"
         android:text="@string/design_settings_button"
         android:textColor="@color/TextColorGreen"
@@ -36,11 +36,11 @@
 
     <Button
         android:id="@+id/SetPushButton"
-        android:layout_width="250dp"
-        android:layout_height="100dp"
+        android:layout_width="@dimen/settings_button_width"
+        android:layout_height="@dimen/settings_button_height"
         android:layout_below="@+id/SetDesignButton"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="@dimen/settings_margin_between_buttons"
         android:background="@color/ButtonBackgroundDarkGrey"
         android:text="@string/push_settings_button"
         android:textColor="@color/TextColorGreen" />
