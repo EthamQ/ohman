@@ -144,24 +144,7 @@ public class TextUtil {
         //temporary false
         List notes = getAllNotes(c, false);
 
-        String[] projection = {
-                "title",
-                "content",
-                "encrypted"
-        };
-
-        String selection = "title = ?";
-        String[] selectionArgs = { title };
-
-        Cursor cursor = db.query(
-                "notes",
-                projection,
-                selection,
-                selectionArgs,
-                null,
-                null,
-                null
-        );
+        Cursor cursor = notesDB.simpleTitleCursor(true, title);
         while(cursor.moveToNext()){
             db.delete("notes", "title" + " = " + title, null);
         }
