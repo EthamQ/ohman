@@ -1,7 +1,6 @@
 package com.instancedev.aceuron.aceuron;
 
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -9,16 +8,16 @@ import android.database.sqlite.SQLiteOpenHelper;
  * Created by instance on 06/09/17.
  */
 
-public class NotesDBUtil extends SQLiteOpenHelper {
+public class ClassScheduleDBUtil extends SQLiteOpenHelper {
     public static final int DATABASE_VERSION = 1;
-    public static final String DATABASE_NAME = "notes.db";
+    public static final String DATABASE_NAME = "schedule.db";
 
-    public NotesDBUtil(Context context) {
+    public ClassScheduleDBUtil(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(TextUtil.SQL_CREATE_NOTES_TBL);
+        db.execSQL(TextUtil.SQLITE_CREATE_SCHEDULE_TBL);
     }
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -28,6 +27,4 @@ public class NotesDBUtil extends SQLiteOpenHelper {
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         onUpgrade(db, oldVersion, newVersion);
     }
-
-
 }

@@ -6,9 +6,13 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 
 import java.security.AlgorithmParameters;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.crypto.Cipher;
@@ -27,7 +31,7 @@ import static android.content.Context.MODE_PRIVATE;
 public class TextUtil {
 
     // TODO For this whole file: Documentation
-    // TODO Might wanna refactor this into two files: Database / Security
+    // TODO Will refactor this into two files: Database / Security
 
     /* Database related utilities */
 
@@ -38,15 +42,38 @@ public class TextUtil {
         public boolean encrypted;
     };
 
+    static class ClassScheduleEntry
+    {
+        public int x;
+        public int y;
+        public String content;
+    };
+
+    static class CalendarEntry
+    {
+        public String date;
+        public String content;
+        boolean notify;
+    };
+
     public static String SQL_CREATE_NOTES_TBL = "CREATE TABLE notes (" +
             "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
             "title TEXT, " +
             "content TEXT, " +
             "encrypted INTEGER)";
 
+    public static String SQLITE_CREATE_CALENDAR_TBL = "CREATE TABLE calendar (" +
+            "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            "date TEXT, " +
+            "content TEXT, " +
+            "notify INTEGER)";
 
+    public static String SQLITE_CREATE_SCHEDULE_TBL = "CREATE TABLE schedule (" +
+            "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            "x INTEGER, " +
+            "y INTEGER, " +
+            "content TEXT)";
 
-    // You can get the context with getContext();
     public static long insertNote(Context c, String title, String content, boolean encrypted) {
         NotesDBUtil notesDB = new NotesDBUtil(c);
         SQLiteDatabase db = notesDB.getWritableDatabase();
@@ -58,30 +85,32 @@ public class TextUtil {
         return newRowId;
     }
 
-    // You can get the context with getContext();
-    public static List<Note> getNoteByTitle(Context c, String title) {
+    public static void deleteNote(Context c, String title) {
         NotesDBUtil notesDB = new NotesDBUtil(c);
         SQLiteDatabase db = notesDB.getReadableDatabase();
+        db.delete("notes", "title = ?", new String[] {title});
+    }
 
-
-        String[] projection = {
-                "title",
-                "content",
-                "encrypted"
-        };
-
-        String selection = "title = ?";
-        String[] selectionArgs = { title };
+    public static Cursor getCursor(SQLiteOpenHelper helper, String table, String sel, String[] selArgs){
+        SQLiteDatabase db = helper.getReadableDatabase();
 
         Cursor cursor = db.query(
-                "notes",
-                projection,
-                selection,
-                selectionArgs,
+                table,
+                null, // *
+                sel,
+                selArgs,
                 null,
                 null,
                 null
         );
+
+        return cursor;
+    }
+
+    public static List<Note> getNoteByTitle(Context c, String title) {
+        NotesDBUtil notesDB = new NotesDBUtil(c);
+
+        Cursor cursor = TextUtil.getCursor(notesDB, "notes", "title = ?", new String[] {title});
 
         List notes = new ArrayList<Note>();
         while(cursor.moveToNext()) {
@@ -98,30 +127,8 @@ public class TextUtil {
 
     public static List<Note> getAllNotes(Context c, boolean encrypted) {
         NotesDBUtil notesDB = new NotesDBUtil(c);
-        SQLiteDatabase db = notesDB.getReadableDatabase();
 
-
-        String[] projection = {
-                "title",
-                "content",
-                "encrypted"
-        };
-
-        String selection = "encrypted = ?";
-        String encryptedString = encrypted + "";
-        String[] selectionArgs = { encryptedString };
-
-
-
-        Cursor cursor = db.query(
-                "notes",
-                projection,
-                selection,
-                selectionArgs,
-                null,
-                null,
-                null
-        );
+        Cursor cursor = TextUtil.getCursor(notesDB, "notes", "encrypted = ?", new String[] { encrypted ? "1" : "0"});
 
         List notes = new ArrayList<Note>();
         while(cursor.moveToNext()) {
@@ -136,19 +143,63 @@ public class TextUtil {
         return notes;
     }
 
-    //no idea if this makes any sense lol
-    public static void deleteNote(Context c, String title) {
-        NotesDBUtil notesDB = new NotesDBUtil(c);
-        SQLiteDatabase db = notesDB.getReadableDatabase();
-
-        //temporary false
-        List notes = getAllNotes(c, false);
-
-        Cursor cursor = notesDB.simpleTitleCursor(true, title);
-        while(cursor.moveToNext()){
-            db.delete("notes", "title" + " = " + title, null);
+    public static List<CalendarEntry> getCalendarByDateRange(Context c, Calendar startDate, int days) {
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("y-M-d");
+        String[] selArgs = new String[days];
+        int start_i = startDate.get(Calendar.DAY_OF_MONTH);
+        for(int i = 0; i < days; i++) {
+            // TODO this is entirely untested
+            Calendar cal = Calendar.getInstance();
+            cal.set(Calendar.DAY_OF_MONTH, start_i + i);
+            selArgs[i] = dateFormatter.format(cal.getTime());
         }
 
+        CalendarDBUtil calendarDB = new CalendarDBUtil(c);
+
+        Cursor cursor = TextUtil.getCursor(calendarDB, "calendar", "date = ?", selArgs);
+
+        List entries = new ArrayList<CalendarEntry>();
+        while(cursor.moveToNext()) {
+            CalendarEntry n = new CalendarEntry();
+            n.date = cursor.getString(cursor.getColumnIndexOrThrow("date"));
+            n.content = cursor.getString(cursor.getColumnIndexOrThrow("content"));
+            n.notify = cursor.getInt(cursor.getColumnIndexOrThrow("notify")) == 1;
+            entries.add(n);
+        }
+        cursor.close();
+
+        return entries;
+    }
+
+    // Date should use the following formatter
+    // SimpleDateFormat dateFormatter = new SimpleDateFormat("y-M-d");
+    public static long insertCalendarEntry(Context c, String date, String content, boolean notify) {
+        CalendarDBUtil notesDB = new CalendarDBUtil(c);
+        SQLiteDatabase db = notesDB.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("date", date);
+        values.put("content", content);
+        values.put("notify", notify ? 1 : 0); // 1 = true, 0 = false
+        long newRowId = db.insert("calendar", null, values);
+        return newRowId;
+    }
+
+    public static List<ClassScheduleEntry> getClassSchedule(Context c) {
+        ClassScheduleDBUtil scheduleDB = new ClassScheduleDBUtil(c);
+
+        Cursor cursor = TextUtil.getCursor(scheduleDB, "schedule", null, null);
+
+        List entries = new ArrayList<ClassScheduleEntry>();
+        while(cursor.moveToNext()) {
+            ClassScheduleEntry n = new ClassScheduleEntry();
+            n.x = cursor.getInt(cursor.getColumnIndexOrThrow("x"));
+            n.y = cursor.getInt(cursor.getColumnIndexOrThrow("y"));
+            n.content = cursor.getString(cursor.getColumnIndexOrThrow("content"));
+            entries.add(n);
+        }
+        cursor.close();
+
+        return entries;
     }
 
     /* Security related utilities */
