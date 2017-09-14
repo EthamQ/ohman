@@ -1,0 +1,94 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerHorizontal="false"
+    android:layout_centerVertical="false"
+    android:background="@android:color/black">
+
+
+    <Button
+        android:id="@+id/MondayButton"
+        android:layout_width="@dimen/schedule_button_width"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:background="@color/ButtonBackgroundDarkGrey"
+        android:text="Monday"
+        android:textColor="@color/TextColorGreen"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/TuesdayButton"
+        android:layout_width="@dimen/schedule_button_width"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/MondayButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/schedule_margin_between_buttons"
+        android:background="@color/ButtonBackgroundDarkGrey"
+        android:text="Tuesday"
+        android:textColor="@color/TextColorGreen"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/WednesdayButton"
+        android:layout_width="@dimen/schedule_button_width"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/TuesdayButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/schedule_margin_between_buttons"
+        android:background="@color/ButtonBackgroundDarkGrey"
+        android:text="Wednesday"
+        android:textColor="@color/TextColorGreen"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/ThursdayButton"
+        android:layout_width="@dimen/schedule_button_width"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/WednesdayButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/schedule_margin_between_buttons"
+        android:background="@color/ButtonBackgroundDarkGrey"
+        android:text="Thursday"
+        android:textColor="@color/TextColorGreen"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/FridayButton"
+        android:layout_width="@dimen/schedule_button_width"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ThursdayButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/schedule_margin_between_buttons"
+        android:background="@color/ButtonBackgroundDarkGrey"
+        android:text="Friday"
+        android:textColor="@color/TextColorGreen"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/SaturdayButton"
+        android:layout_width="@dimen/schedule_button_width"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/FridayButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/schedule_margin_between_buttons"
+        android:background="@color/ButtonBackgroundDarkGrey"
+        android:text="Satuday"
+        android:textColor="@color/TextColorGreen"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/SundayButton"
+        android:layout_width="@dimen/schedule_button_width"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/SaturdayButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/schedule_margin_between_buttons"
+        android:background="@color/ButtonBackgroundDarkGrey"
+        android:text="Sunday"
+        android:textColor="@color/TextColorGreen"
+        android:textSize="24sp" />
+</RelativeLayout>

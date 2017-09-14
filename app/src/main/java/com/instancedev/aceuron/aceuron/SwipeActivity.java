@@ -14,7 +14,7 @@ public class SwipeActivity extends FragmentActivity implements
         MainButtonsFragment.OnFragmentInteractionListener, SettingsFragment.OnFragmentInteractionListener,
 NotesFragment.OnFragmentInteractionListener, NotesEncryptedFragment.OnFragmentInteractionListener{
 
-    private static final int NUM_PAGES = 7;
+    private static final int NUM_PAGES = 4;
 
     /**
      * The pager widget, which handles animation and allows swiping horizontally to access previous
@@ -39,8 +39,12 @@ NotesFragment.OnFragmentInteractionListener, NotesEncryptedFragment.OnFragmentIn
 
         // Instantiate a ViewPager and a PagerAdapter.
         mPager = (ViewPager) findViewById(R.id.pager);
+
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mPager.setAdapter(mPagerAdapter);
+
+        setCurrentItem(1, true);
+
     }
 
     public void setCurrentItem (int item, boolean smoothScroll) {
@@ -83,18 +87,16 @@ NotesFragment.OnFragmentInteractionListener, NotesEncryptedFragment.OnFragmentIn
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return OverviewFragment.newInstance();
+                    //later returns the calendar
+                    return MainButtonsFragment.newInstance();
                 case 1:
-                    return SettingsFragment.newInstance();
+                    return OverviewFragment.newInstance();
                 case 2:
                     return NotesFragment.newInstance();
                 case 3:
                     return NotesEncryptedFragment.newInstance();
-                case 4:
 
-                case 5:
-                case 6:
-                    break; // TODO
+
             }
             return new Fragment();
 

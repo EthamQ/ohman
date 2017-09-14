@@ -43,8 +43,10 @@ public class OverviewFragment extends Fragment {
                         // if UP to Down sweep event on screen
                         if (y1 < y2)
                         {
-                            Toast.makeText(getActivity(), "Weekly schedule is supposed to appear", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getActivity(), "Weekly schedule is supposed to appear", Toast.LENGTH_LONG).show();
 
+                            Intent i = new Intent(getActivity(), WeeklyScheduleActivity.class);
+                            startActivity(i);
                         }
 
                         //if Down to UP sweep event on screen
