@@ -1,5 +1,6 @@
 package com.instancedev.aceuron.aceuron;
 
+import android.icu.util.Calendar;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,7 +12,7 @@ import android.support.v4.view.ViewPager;
 
 
 public class SwipeActivity extends FragmentActivity implements
-        MainButtonsFragment.OnFragmentInteractionListener, SettingsFragment.OnFragmentInteractionListener,
+        MainButtonsFragment.OnFragmentInteractionListener, CalendarFragment.OnFragmentInteractionListener,
 NotesFragment.OnFragmentInteractionListener, NotesEncryptedFragment.OnFragmentInteractionListener{
 
     private static final int NUM_PAGES = 4;
@@ -75,20 +76,12 @@ NotesFragment.OnFragmentInteractionListener, NotesEncryptedFragment.OnFragmentIn
             return NUM_PAGES;
         }
 
-        /**
-         *
-         * @param position
-         * @return
-         * position 0: return MainButtonsFragment
-         * position 1: return OverviewFragment
-         * position 2: return SettingsFragment
-         */
+      
         @Override
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    //later returns the calendar
-                    return MainButtonsFragment.newInstance();
+                    return CalendarFragment.newInstance();
                 case 1:
                     return OverviewFragment.newInstance();
                 case 2:
