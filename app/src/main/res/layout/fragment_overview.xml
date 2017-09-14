@@ -5,4 +5,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.instancedev.aceuron.aceuron.OverviewFragment">
 
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Overview Fragment"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Swap Down to Up for Settings"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Next: Swap Up to Down for Weekly Schedule"
+        android:textSize="30sp" />
 </LinearLayout>

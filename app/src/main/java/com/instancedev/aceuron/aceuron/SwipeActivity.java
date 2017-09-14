@@ -83,7 +83,7 @@ NotesFragment.OnFragmentInteractionListener, NotesEncryptedFragment.OnFragmentIn
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return MainButtonsFragment.newInstance();
+                    return OverviewFragment.newInstance();
                 case 1:
                     return SettingsFragment.newInstance();
                 case 2:
@@ -91,7 +91,7 @@ NotesFragment.OnFragmentInteractionListener, NotesEncryptedFragment.OnFragmentIn
                 case 3:
                     return NotesEncryptedFragment.newInstance();
                 case 4:
-                    return OverviewFragment.newInstance();
+
                 case 5:
                 case 6:
                     break; // TODO

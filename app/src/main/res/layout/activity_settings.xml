@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.instancedev.aceuron.aceuron.SettingsActivity"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="false"
+        android:layout_centerVertical="false"
+        android:background="@android:color/black">
+
+    <Button
+        android:id="@+id/SetStartButton"
+        android:layout_width="@dimen/settings_button_width"
+        android:layout_height="@dimen/settings_button_height"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/settings_margin_top"
+        android:background="@color/ButtonBackgroundDarkGrey"
+        android:text="@string/homescreen_settings_button"
+        android:textColor="@color/TextColorGreen"
+        />
+
+    <Button
+        android:id="@+id/SetDesignButton"
+        android:layout_width="@dimen/settings_button_width"
+        android:layout_height="@dimen/settings_button_height"
+        android:layout_below="@+id/SetStartButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/settings_margin_between_buttons"
+        android:background="@color/ButtonBackgroundDarkGrey"
+        android:text="@string/design_settings_button"
+        android:textColor="@color/TextColorGreen"
+        android:textColorLink="@color/colorAccent"
+        android:textSize="20sp" />
+
+
+    <Button
+        android:id="@+id/SetPushButton"
+        android:layout_width="@dimen/settings_button_width"
+        android:layout_height="@dimen/settings_button_height"
+        android:layout_below="@+id/SetDesignButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/settings_margin_between_buttons"
+        android:background="@color/ButtonBackgroundDarkGrey"
+        android:text="@string/push_settings_button"
+        android:textColor="@color/TextColorGreen" />
+
+    </RelativeLayout>
+
