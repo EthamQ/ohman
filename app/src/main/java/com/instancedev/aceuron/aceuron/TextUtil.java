@@ -40,6 +40,8 @@ public class TextUtil {
         public String title;
         public String content;
         public boolean encrypted;
+
+
     };
 
     static class ClassScheduleEntry
