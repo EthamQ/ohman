@@ -76,7 +76,7 @@ NotesFragment.OnFragmentInteractionListener, NotesEncryptedFragment.OnFragmentIn
             return NUM_PAGES;
         }
 
-      
+
         @Override
         public Fragment getItem(int position) {
             switch (position) {

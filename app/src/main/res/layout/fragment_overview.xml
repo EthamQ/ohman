@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
-        android:text="Swap DOWN to UP for Settings"
+        android:text="Sweep DOWN to UP for Settings"
         android:textSize="30sp" />
 
     <TextView
@@ -25,6 +25,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:text="Swap UP to DOWN for Weekly Schedule"
+        android:text="Sweep UP to DOWN for Weekly Schedule"
         android:textSize="30sp" />
 </LinearLayout>
