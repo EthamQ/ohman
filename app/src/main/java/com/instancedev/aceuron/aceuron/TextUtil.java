@@ -91,10 +91,16 @@ public class TextUtil {
         return newRowId;
     }
 
-    public static void deleteNote(Context c, String title) {
+    public static void deleteNote(Context c, int id) {
         NotesDBUtil notesDB = new NotesDBUtil(c);
-        SQLiteDatabase db = notesDB.getReadableDatabase();
-        db.delete("notes", "title = ?", new String[] {title});
+        SQLiteDatabase db = notesDB.getWritableDatabase();
+
+        String whereClause = "id == ?";
+        String[] whereArgs = new String[] {
+                Integer.toString(id)
+        };
+
+        db.delete("notes", whereClause, whereArgs);
     }
 
     public static Cursor getCursor(SQLiteOpenHelper helper, String table, String sel, String[] selArgs){
@@ -136,6 +142,32 @@ public class TextUtil {
 
         return notes;
     }
+
+
+
+
+
+    public static void editNote(Context c, int id, String title, String content){
+        NotesDBUtil notesDB = new NotesDBUtil(c);
+        SQLiteDatabase db = notesDB.getReadableDatabase();
+
+        // define the new value you want
+        ContentValues newValues = new ContentValues();
+        newValues.put("title", title);
+        newValues.put("content", content);
+
+        String whereClause = "id == ?";
+
+        String[] whereArgs = new String[] {
+                Integer.toString(id)
+        };
+
+        int amountOfUpdatedColumns = db.update("notes", newValues, whereClause, whereArgs);
+    }
+
+
+
+
 
     public static List<Note> getNotesById(Context c, int id) {
         NotesDBUtil notesDB = new NotesDBUtil(c);

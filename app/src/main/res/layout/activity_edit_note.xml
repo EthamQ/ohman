@@ -62,7 +62,7 @@
         android:layout_marginRight="35dp" />
 
     <Button
-        android:id="@+id/SaveButton"
+        android:id="@+id/SaveButtonEdit"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:text="Save"

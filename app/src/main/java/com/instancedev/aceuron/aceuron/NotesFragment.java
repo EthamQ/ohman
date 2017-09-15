@@ -1,5 +1,6 @@
 package com.instancedev.aceuron.aceuron;
 
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -35,11 +36,27 @@ public class NotesFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_notes, container, false);
         init();
         return view;
+
     }
+
+    //supposed to refresh this fragment, not working yet
+    /**public void r(){
+        // Reload current fragment
+        Fragment frg = null;
+        frg = getFragmentManager().findFragmentByTag(this.getTag());
+        android.support.v4.app.FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.detach(frg);
+        ft.attach(frg);
+        ft.commit();
+    }**/
+
+
 
     public static NotesFragment newInstance(){
         return new NotesFragment();
     }
+
+
 
     public void init(){
         listViewItems = new ArrayList<>();
@@ -59,12 +76,6 @@ public class NotesFragment extends Fragment {
             listViewAdapter.add(n);
         }
 
-        TextUtil.Note n = new TextUtil.Note();
-        n.id = 1;
-        n.title = "asdf";
-        n.content = "asdf";
-        n.encrypted = false;
-        listViewAdapter.add(n);
 
         //Add ArrayAdapter to ListView
         listview.setAdapter(listViewAdapter);
@@ -85,11 +96,14 @@ public class NotesFragment extends Fragment {
                                     int position, long id) {
                 TextUtil.Note n = (TextUtil.Note) parent.getItemAtPosition(position);
                 EditNoteActivity.setText(n.title, n.content);
+                EditNoteActivity.setNote(n.id);
                 startActivity(new Intent(getActivity(), EditNoteActivity.class));
             }
         });
 
     }
+
+
 
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
