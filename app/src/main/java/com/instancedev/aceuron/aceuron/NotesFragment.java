@@ -53,7 +53,16 @@ public class NotesFragment extends Fragment {
         listview = (ListView) view.findViewById(R.id.listView);
 
 
+        //Add all title of the public notes to the ArrayAdapter to display them
+        List<TextUtil.Note> notes = TextUtil.getAllNotes(this.getContext(), false);
+        for(TextUtil.Note n : notes) {
+            listViewAdapter.add(n.getTitle());
+        }
 
+        //Add ArrayAdapter to ListView
+        listview.setAdapter(listViewAdapter);
+
+        //addNote Button -> NewNoteActivity
         addNote.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -61,27 +70,14 @@ public class NotesFragment extends Fragment {
             }
         });
 
-        //added getAllNotes constructor arguments
-        List<TextUtil.Note> notes = TextUtil.getAllNotes(this.getContext(), false);
-        for(TextUtil.Note n : notes) {
-            listViewAdapter.add(n.title);
-        }
-
-
-        //Added by Raphael
-        listview.setAdapter(listViewAdapter);
-        //
+        //If you click on a item of the ArrayAdapter it directs you to EditNoteActivity where you can
+        //see what you have previously written and saved
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-
-                List<TextUtil.Note> notesd = TextUtil.getNoteByTitle(getContext(), parent.getItemAtPosition(position).toString());
-                TextUtil.Note n = notesd.get(0);
-                String text = n.content;
-                String title = n.title;
-
-                EditNoteActivity.setText(title, text);
+                TextUtil.Note n = TextUtil.getNoteByTitle(getContext(), parent.getItemAtPosition(position).toString());
+                EditNoteActivity.setText(n.getTitle(), n.getContent());
               startActivity(new Intent(getActivity(), EditNoteActivity.class));
             }
         });

@@ -1,11 +1,14 @@
 package com.instancedev.aceuron.aceuron;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class NewNoteActivity extends AppCompatActivity {
 
@@ -33,13 +36,29 @@ public class NewNoteActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 // TODO encryption checkbox
-                TextUtil.insertNote(
-                        getApplicationContext(),
-                        titleEditText.getText().toString(),
-                        contentEditText.getText().toString(),
-                        encrypted
-                );
-                finish();
+
+                //Check if the title you want to save already exists
+                NotesDBUtil notesDB = new NotesDBUtil(getApplicationContext());
+                String table = "notes";
+                String[] selArgs = new String[]{titleEditText.getText().toString()};
+                boolean contains = TextUtil.containsTitle(notesDB, table, selArgs);
+
+                if(contains){
+                    Toast.makeText(getApplicationContext(), "Your title already exists, please choose another one", Toast.LENGTH_SHORT).show();
+                }
+
+                else {
+
+                    TextUtil.insertNote(
+                            getApplicationContext(),
+                            titleEditText.getText().toString(),
+                            contentEditText.getText().toString(),
+                            encrypted
+                    );
+
+
+                    finish();
+                }
 
 
             }

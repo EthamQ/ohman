@@ -6,12 +6,14 @@ import android.widget.EditText;
 
 public class EditNoteActivity extends AppCompatActivity {
 
-    static String title = "Default";
-    static String text = "Default";
+    private static String TITLE = "Default";
+    private static String CONTENT = "Default";
 
-    public static void setText(String tit, String content){
-        title = tit;
-        text = content;
+
+    public static void setText(String title, String content){
+        TITLE = title;
+        CONTENT = content;
+
     }
 
     @Override
@@ -19,9 +21,10 @@ public class EditNoteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_note);
 
-        final EditText titleEditText = (EditText) findViewById(R.id.editTexte);
-        titleEditText.setText(text);
-        final EditText titleEditText2 = (EditText) findViewById(R.id.editText2e);
-        titleEditText2.setText(title);
+        //Display the previous saved title and content
+        EditText titleEditText = (EditText) findViewById(R.id.editTitle);
+        titleEditText.setText(TITLE);
+        EditText contentEditText = (EditText) findViewById(R.id.editContent);
+        contentEditText.setText(CONTENT);
     }
 }

@@ -37,9 +37,17 @@ public class TextUtil {
 
     static class Note
     {
-        public String title;
-        public String content;
+        private String title;
+        private String content;
         public boolean encrypted;
+
+        public String getTitle(){
+            return title;
+        }
+
+        public String getContent(){
+            return content;
+        }
 
 
     };
@@ -109,7 +117,17 @@ public class TextUtil {
         return cursor;
     }
 
-    public static List<Note> getNoteByTitle(Context c, String title) {
+
+    //returns wether or not a note with the specified title already exists in the database
+    public static boolean containsTitle(SQLiteOpenHelper helper, String table, String[] selArgs){
+        Cursor cursor = TextUtil.getCursor(helper, table, "title = ?", selArgs);
+        SQLiteDatabase db = helper.getReadableDatabase();
+        while(cursor.moveToNext()) {
+            return true;
+        }
+        return false;
+    }
+    public static List<Note> getNoteAsListByTitle(Context c, String title) {
         NotesDBUtil notesDB = new NotesDBUtil(c);
 
         Cursor cursor = TextUtil.getCursor(notesDB, "notes", "title = ?", new String[] {title});
@@ -125,6 +143,23 @@ public class TextUtil {
         cursor.close();
 
         return notes;
+    }
+
+    public static Note getNoteByTitle(Context c, String title) {
+        NotesDBUtil notesDB = new NotesDBUtil(c);
+
+        Cursor cursor = TextUtil.getCursor(notesDB, "notes", "title = ?", new String[] {title});
+
+        Note n = new Note();
+        while(cursor.moveToNext()) {
+            n.title = cursor.getString(cursor.getColumnIndexOrThrow("title"));
+            n.content = cursor.getString(cursor.getColumnIndexOrThrow("content"));
+            n.encrypted = cursor.getInt(cursor.getColumnIndexOrThrow("encrypted")) == 1;
+
+        }
+        cursor.close();
+
+        return n;
     }
 
     public static List<Note> getAllNotes(Context c, boolean encrypted) {

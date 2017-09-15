@@ -72,7 +72,7 @@ public class NotesEncryptedFragment extends Fragment {
 
         List<TextUtil.Note> notes = TextUtil.getAllNotes(this.getContext(), true);
         for(TextUtil.Note n : notes) {
-            listViewAdapter.add(n.title);
+            listViewAdapter.add(n.getTitle());
         }
 
 
