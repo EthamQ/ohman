@@ -41,6 +41,7 @@ public class TextUtil {
         private String content;
         public boolean encrypted;
 
+
         public String getTitle(){
             return title;
         }
@@ -48,6 +49,8 @@ public class TextUtil {
         public String getContent(){
             return content;
         }
+
+
 
 
     };
@@ -70,7 +73,7 @@ public class TextUtil {
             "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
             "title TEXT, " +
             "content TEXT, " +
-            "encrypted INTEGER)";
+            "encrypted INTEGER)" ;
 
     public static String SQLITE_CREATE_CALENDAR_TBL = "CREATE TABLE calendar (" +
             "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -151,6 +154,7 @@ public class TextUtil {
         Cursor cursor = TextUtil.getCursor(notesDB, "notes", "title = ?", new String[] {title});
 
         Note n = new Note();
+
         while(cursor.moveToNext()) {
             n.title = cursor.getString(cursor.getColumnIndexOrThrow("title"));
             n.content = cursor.getString(cursor.getColumnIndexOrThrow("content"));
