@@ -40,13 +40,13 @@ public class NotesEncryptedFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle){
-        view = inflater.inflate(R.layout.fragment_notes, container, false);
+        view = inflater.inflate(R.layout.fragment_notes_encrypted, container, false);
         init();
         return view;
     }
 
-    public static NotesFragment newInstance(){
-        return new NotesFragment();
+    public static NotesEncryptedFragment newInstance(){
+        return new NotesEncryptedFragment();
     }
 
     public void init(){
@@ -55,11 +55,8 @@ public class NotesEncryptedFragment extends Fragment {
                 getActivity().getApplicationContext(),
                 android.R.layout.simple_spinner_item, listViewItems);
 
-
-        addNote = (Button) view.findViewById(R.id.AddNoteButton);
-        listview = (ListView) view.findViewById(R.id.listView);
-
-
+        addNote = (Button) view.findViewById(R.id.AddNoteButtonE);
+        listview = (ListView) view.findViewById(R.id.listViewE);
 
         addNote.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -69,15 +66,12 @@ public class NotesEncryptedFragment extends Fragment {
             }
         });
 
-
         List<TextUtil.Note> notes = TextUtil.getAllNotes(this.getContext(), true);
         for(TextUtil.Note n : notes) {
-            listViewAdapter.add(n.getTitle());
+            listViewAdapter.add(n.title);
         }
 
-
         listview.setAdapter(listViewAdapter);
-
     }
 
     public interface OnFragmentInteractionListener {

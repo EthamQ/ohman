@@ -46,18 +46,23 @@ public class NotesFragment extends Fragment {
         listViewItems = new ArrayList<>();
         listViewAdapter = new ArrayAdapter<String>(
                 getActivity().getApplicationContext(),
-                android.R.layout.simple_spinner_item, listViewItems);
-
+                android.R.layout.simple_list_item_1, listViewItems);
 
         addNote = (Button) view.findViewById(R.id.AddNoteButton);
         listview = (ListView) view.findViewById(R.id.listView);
 
-
         //Add all title of the public notes to the ArrayAdapter to display them
         List<TextUtil.Note> notes = TextUtil.getAllNotes(this.getContext(), false);
         for(TextUtil.Note n : notes) {
-            listViewAdapter.add(n.getTitle());
+            listViewAdapter.add(n);
         }
+
+        TextUtil.Note n = new TextUtil.Note();
+        n.id = 1;
+        n.title = "asdf";
+        n.content = "asdf";
+        n.encrypted = false;
+        listViewAdapter.add(n);
 
         //Add ArrayAdapter to ListView
         listview.setAdapter(listViewAdapter);
@@ -76,12 +81,11 @@ public class NotesFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                TextUtil.Note n = TextUtil.getNoteByTitle(getContext(), parent.getItemAtPosition(position).toString());
-                EditNoteActivity.setText(n.getTitle(), n.getContent());
-              startActivity(new Intent(getActivity(), EditNoteActivity.class));
+                TextUtil.Note n = (TextUtil.Note) parent.getItemAtPosition(position);
+                EditNoteActivity.setText(n.title, n.content);
+                startActivity(new Intent(getActivity(), EditNoteActivity.class));
             }
         });
-
 
     }
 

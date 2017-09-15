@@ -12,7 +12,8 @@
         android:textColor="@color/TextColorGreen" />
 
     <ListView
-        android:id="@+id/listView"
+        android:id="@+id/listViewE"
+        android:background="@color/ButtonBackgroundDarkGrey"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </LinearLayout>
