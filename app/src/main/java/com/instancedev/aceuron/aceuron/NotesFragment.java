@@ -11,7 +11,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,10 +45,13 @@ public class NotesFragment extends Fragment {
         listViewItems = new ArrayList<>();
         listViewAdapter = new ArrayAdapter<String>(
                 getActivity().getApplicationContext(),
-                android.R.layout.simple_list_item_1, listViewItems);
+                R.layout.list_text_color, R.id.list_text_color, listViewItems){
+
+        };
 
         addNote = (Button) view.findViewById(R.id.AddNoteButton);
         listview = (ListView) view.findViewById(R.id.listView);
+
 
         //Add all title of the public notes to the ArrayAdapter to display them
         List<TextUtil.Note> notes = TextUtil.getAllNotes(this.getContext(), false);
