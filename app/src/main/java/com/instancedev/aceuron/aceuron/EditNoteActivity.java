@@ -24,6 +24,10 @@ public class EditNoteActivity extends AppCompatActivity {
 
     }
 
+    static NotesFragment fragment;
+    public static void passFragment(NotesFragment nf){
+        fragment = nf;
+    }
 
 
     public static void setNote(int noteID){
@@ -51,6 +55,7 @@ public class EditNoteActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 TextUtil.editNote(getApplicationContext(), id, titleEditText.getText().toString(), contentEditText.getText().toString());
+               fragment.refreshArrayAdapter();
                 finish();
 
             }
