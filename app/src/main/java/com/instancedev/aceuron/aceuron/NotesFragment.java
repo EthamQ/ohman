@@ -1,6 +1,5 @@
 package com.instancedev.aceuron.aceuron;
 
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -58,7 +57,7 @@ public class NotesFragment extends Fragment {
         listViewItems = new ArrayList<>();
         listViewAdapter = new ArrayAdapter<String>(
                 getActivity().getApplicationContext(),
-                R.layout.list_text_color, R.id.list_text_color, listViewItems){
+                R.layout.array_adapter_design, R.id.list_text_color, listViewItems){
 
         };
 

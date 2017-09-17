@@ -6,14 +6,14 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
-    <!-- Defining where should text be placed. You set you text color here-->
+    <!-- Defining the design for the ArrayAdapter in NotesFragment-->
     <TextView
         android:id="@+id/list_text_color"
         android:textColor="@color/TextColorGreen"
         android:gravity="left"
-        android:minHeight="50dp"
+        android:minHeight="@dimen/adapter_size_of_items"
         android:background="@color/ButtonBackgroundDarkGrey"
-        android:textSize="23sp"
+        android:textSize="@dimen/adapter_size_of_text"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         />

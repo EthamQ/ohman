@@ -17,6 +17,9 @@ public class EditNoteActivity extends AppCompatActivity {
     private static String CONTENT = "Default";
     static int id;
 
+    Button save;
+    Button delete;
+
 
     //Retrieve arguments from the NotesFragment
     public static void setText(String title, String content){
@@ -50,9 +53,10 @@ public class EditNoteActivity extends AppCompatActivity {
         final EditText contentEditText = (EditText) findViewById(R.id.editContent);
         contentEditText.setText(CONTENT);
 
+        save = (Button) findViewById(R.id.SaveButtonEdit);
+        delete = (Button) findViewById(R.id.DeleteButtonEdit);
 
         //set up the click listener for the save button
-        Button save = (Button) findViewById(R.id.SaveButtonEdit);
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,6 +68,18 @@ public class EditNoteActivity extends AppCompatActivity {
                 fragment.refreshArrayAdapter();
                 finish();
 
+            }
+        });
+
+        //set up the click listener for the save button
+        delete.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+               TextUtil.deleteNote(getApplicationContext(), id);
+
+                //refresh the ListView ad close this activity
+                fragment.refreshArrayAdapter();
+                finish();
             }
         });
     }

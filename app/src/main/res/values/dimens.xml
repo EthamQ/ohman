@@ -11,5 +11,10 @@
     <dimen name="schedule_margin_between_buttons">25dp</dimen>
     <dimen name="schedule_button_width">220dp</dimen>
 
+    <!-- array_adapter_design.xml -->
+    <dimen name="adapter_size_of_items">50dp</dimen>
+    <dimen name="adapter_size_of_text">23sp</dimen>
+
+
 
 </resources>
