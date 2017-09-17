@@ -76,6 +76,11 @@ public class NotesFragment extends Fragment {
         //Add ArrayAdapter to ListView
         listview.setAdapter(listViewAdapter);
 
+        //pass this fragment to EditNoteActivity and NewNoteActivity
+        //so it can refresh the array adapter after updating its values
+        EditNoteActivity.passFragment(this);
+        NewNoteActivity.passFragment(this);
+
 
         //addNote Button -> startActivity(NewNoteActivity)
         addNote.setOnClickListener(new View.OnClickListener(){
@@ -85,9 +90,7 @@ public class NotesFragment extends Fragment {
             }
         });
 
-        //pass this fragment to EditNoteActivity
-        //so it can refresh the array adapter after updating its values
-        EditNoteActivity.passFragment(this);
+
 
         //If you click on a item of the ArrayAdapter it directs you to EditNoteActivity where you can
         //see what you have previously written and saved
@@ -97,14 +100,14 @@ public class NotesFragment extends Fragment {
                                     int position, long id) {
                 TextUtil.Note n = (TextUtil.Note) parent.getItemAtPosition(position);
                 EditNoteActivity.setText(n.title, n.content);
-                EditNoteActivity.setNote(n.id);
+                EditNoteActivity.setNoteID(n.id);
                 startActivity(new Intent(getActivity(), EditNoteActivity.class));
             }
         });
 
     }
 
-    
+
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);

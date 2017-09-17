@@ -15,6 +15,12 @@ public class NewNoteActivity extends AppCompatActivity {
     Button saveButton;
     static boolean encrypted = false;
 
+    //pass a fragment to this class in order to access and update it
+    //(pass and refresh methods may be moved to a Util class later)
+    static NotesFragment fragment;
+    public static void passFragment(NotesFragment nf){
+        fragment = nf;
+    }
 
     //method is invoked if this class is accessed through NotesEncryptedFragment
     public static void encrypt(){
@@ -29,26 +35,21 @@ public class NewNoteActivity extends AppCompatActivity {
 
         saveButton = (Button) findViewById(R.id.SaveButton);
 
-        final EditText titleEditText = (EditText) findViewById(R.id.editText2);
-        final EditText contentEditText = (EditText) findViewById(R.id.editText);
+        //retrieve title and text from the two EditText views
+        final EditText titleEditText = (EditText) findViewById(R.id.addTitle);
+        final EditText contentEditText = (EditText) findViewById(R.id.addContent);
+
 
         saveButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 // TODO encryption checkbox
-
-                //Check if the title you want to save already exists
+                //set up the arguments before inserting the note into the database
                 NotesDBUtil notesDB = new NotesDBUtil(getApplicationContext());
                 String table = "notes";
                 String[] selArgs = new String[]{titleEditText.getText().toString()};
-                boolean contains = TextUtil.containsTitle(notesDB, table, selArgs);
 
-                if(contains){
-                    Toast.makeText(getApplicationContext(), "Your title already exists, please choose another one", Toast.LENGTH_SHORT).show();
-                }
-
-                else {
-
+                //Add the note to the database
                     TextUtil.insertNote(
                             getApplicationContext(),
                             titleEditText.getText().toString(),
@@ -56,12 +57,10 @@ public class NewNoteActivity extends AppCompatActivity {
                             encrypted
                     );
 
-
+                    //refresh the NotesFragment and close this activity
+                    fragment.refreshArrayAdapter();
                     finish();
                 }
-
-
-            }
         });
     }
 }

@@ -80,6 +80,8 @@ public class TextUtil {
             "y INTEGER, " +
             "content TEXT)";
 
+
+    //Methods for notes
     public static long insertNote(Context c, String title, String content, boolean encrypted) {
         NotesDBUtil notesDB = new NotesDBUtil(c);
         SQLiteDatabase db = notesDB.getWritableDatabase();
@@ -113,7 +115,7 @@ public class TextUtil {
                 selArgs,
                 null,
                 null,
-                null
+                "id"+" DESC"
         );
 
         return cursor;

@@ -18,22 +18,23 @@ public class EditNoteActivity extends AppCompatActivity {
     static int id;
 
 
+    //Retrieve arguments from the NotesFragment
     public static void setText(String title, String content){
         TITLE = title;
         CONTENT = content;
 
     }
 
+    public static void setNoteID(int noteID){
+        id = noteID;
+    }
+
+    //pass a fragment to this class in order to access and update it
+    //(pass and refresh methods may be moved to a Util class later)
     static NotesFragment fragment;
     public static void passFragment(NotesFragment nf){
         fragment = nf;
     }
-
-
-    public static void setNote(int noteID){
-        id = noteID;
-    }
-
 
 
 
@@ -50,12 +51,17 @@ public class EditNoteActivity extends AppCompatActivity {
         contentEditText.setText(CONTENT);
 
 
+        //set up the click listener for the save button
         Button save = (Button) findViewById(R.id.SaveButtonEdit);
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //edit title and content from the note accessed via its id
+                //NotesFragment uses setNoteID
                 TextUtil.editNote(getApplicationContext(), id, titleEditText.getText().toString(), contentEditText.getText().toString());
-               fragment.refreshArrayAdapter();
+
+                //refresh the ListView ad close this activity
+                fragment.refreshArrayAdapter();
                 finish();
 
             }
