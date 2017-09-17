@@ -1,6 +1,9 @@
 package com.instancedev.aceuron.aceuron;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.v4.app.Fragment;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -71,15 +75,29 @@ public class EditNoteActivity extends AppCompatActivity {
             }
         });
 
-        //set up the click listener for the save button
+        //set up the click listener for the delete button
         delete.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-               TextUtil.deleteNote(getApplicationContext(), id);
+                //AlertDialog set up
+                new AlertDialog.Builder(EditNoteActivity.this)
+                        .setTitle("Sure?")
+                        .setMessage("Do you really want to delete this note?")
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                //if user clicked positive
 
-                //refresh the ListView ad close this activity
-                fragment.refreshArrayAdapter();
-                finish();
+                                //delete
+                                TextUtil.deleteNote(getApplicationContext(), id);
+                                //refresh the ListView and close this activity
+                                fragment.refreshArrayAdapter();
+                                finish();
+                            }})
+                        .setNegativeButton(android.R.string.no, null).show();
+
+
+
             }
         });
     }
