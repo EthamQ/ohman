@@ -45,18 +45,15 @@ public class TextUtil {
         @Override
         public String toString(){
             short reviewLength = 13;
+            String titleReview = title.equals("Title") ? "<No Title>" : title;
+            String contentReview = content.equals("Note") ? "<No Content>" : ((content.length() >= reviewLength)? (content.substring(0,reviewLength)+"...") : content);
+
             StringBuilder sb = new StringBuilder();
-            sb.append("Title:       " + title + "\n");
-            sb.append("Preview: ");
-            if(content.length() >= reviewLength) {
-                sb.append(content, 0, reviewLength);
-                sb.append("...");
-            }
-            else {
-                sb.append(content);
-            }
+            sb.append("Title:       " + titleReview);
             sb.append("\n");
-            
+            sb.append("Preview: " + contentReview);
+            sb.append("\n");
+
           return sb.toString();
     };
     }
