@@ -66,7 +66,7 @@ public class NewNoteActivity extends AppCompatActivity {
 
                 else Toast.makeText(getApplicationContext(), "Choose a title", Toast.LENGTH_LONG).show();
 
-                }
+            }
         });
     }
 }

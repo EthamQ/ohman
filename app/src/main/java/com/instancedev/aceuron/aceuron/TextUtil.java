@@ -54,8 +54,8 @@ public class TextUtil {
             sb.append("Preview: " + contentReview);
             sb.append("\n");
 
-          return sb.toString();
-    };
+            return sb.toString();
+        };
     }
 
     static class ClassScheduleEntry

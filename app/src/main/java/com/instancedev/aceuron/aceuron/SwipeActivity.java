@@ -13,7 +13,7 @@ import android.support.v4.view.ViewPager;
 
 public class SwipeActivity extends FragmentActivity implements
         MainButtonsFragment.OnFragmentInteractionListener, CalendarFragment.OnFragmentInteractionListener,
-NotesFragment.OnFragmentInteractionListener, NotesEncryptedFragment.OnFragmentInteractionListener{
+NotesFragment.OnFragmentInteractionListener{
 
     private static final int NUM_PAGES = 4;
 
