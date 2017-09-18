@@ -91,6 +91,7 @@ public class NotesFragment extends Fragment {
 
 
 
+
         //If you click on a item of the ArrayAdapter it directs you to EditNoteActivity where you can
         //see what you have previously written and saved
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {

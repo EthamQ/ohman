@@ -44,9 +44,22 @@ public class TextUtil {
 
         @Override
         public String toString(){
-            return title;
-        }
+            short reviewLength = 13;
+            StringBuilder sb = new StringBuilder();
+            sb.append("Title:       " + title + "\n");
+            sb.append("Preview: ");
+            if(content.length() >= reviewLength) {
+                sb.append(content, 0, reviewLength);
+                sb.append("...");
+            }
+            else {
+                sb.append(content);
+            }
+            sb.append("\n");
+            
+          return sb.toString();
     };
+    }
 
     static class ClassScheduleEntry
     {
