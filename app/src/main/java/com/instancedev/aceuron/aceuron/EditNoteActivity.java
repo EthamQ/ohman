@@ -64,13 +64,16 @@ public class EditNoteActivity extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //edit title and content from the note accessed via its id
-                //NotesFragment uses setNoteID
-                TextUtil.editNote(getApplicationContext(), id, titleEditText.getText().toString(), contentEditText.getText().toString());
+                if(!titleEditText.getText().toString().isEmpty()) {
+                    //edit title and content from the note accessed via its id
+                    //NotesFragment uses setNoteID
+                    TextUtil.editNote(getApplicationContext(), id, titleEditText.getText().toString(), contentEditText.getText().toString());
 
-                //refresh the ListView ad close this activity
-                fragment.refreshArrayAdapter();
-                finish();
+                    //refresh the ListView ad close this activity
+                    fragment.refreshArrayAdapter();
+                    finish();
+                }
+                else Toast.makeText(getApplicationContext(), "Choose a title", Toast.LENGTH_LONG).show();
 
             }
         });

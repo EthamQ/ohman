@@ -46,7 +46,7 @@ public class TextUtil {
         public String toString(){
             short reviewLength = 13;
             String titleReview = title.equals("Title") ? "<No Title>" : title;
-            String contentReview = content.equals("Note") ? "<No Content>" : ((content.length() >= reviewLength)? (content.substring(0,reviewLength)+"...") : content);
+            String contentReview = (content.equals("Note")|| content.isEmpty()) ? "<No Content>" : ((content.length() >= reviewLength)? (content.substring(0,reviewLength)+"...") : content);
 
             StringBuilder sb = new StringBuilder();
             sb.append("Title:       " + titleReview);

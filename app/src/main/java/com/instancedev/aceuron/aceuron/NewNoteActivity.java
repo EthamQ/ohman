@@ -40,6 +40,7 @@ public class NewNoteActivity extends AppCompatActivity {
         final EditText contentEditText = (EditText) findViewById(R.id.addContent);
 
 
+        //click listener saveButton
         saveButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -49,7 +50,8 @@ public class NewNoteActivity extends AppCompatActivity {
                 String table = "notes";
                 String[] selArgs = new String[]{titleEditText.getText().toString()};
 
-                //Add the note to the database
+                if(!titleEditText.getText().toString().isEmpty()){
+                    //Add the note to the database
                     TextUtil.insertNote(
                             getApplicationContext(),
                             titleEditText.getText().toString(),
@@ -60,6 +62,10 @@ public class NewNoteActivity extends AppCompatActivity {
                     //refresh the NotesFragment and close this activity
                     fragment.refreshArrayAdapter();
                     finish();
+                }
+
+                else Toast.makeText(getApplicationContext(), "Choose a title", Toast.LENGTH_LONG).show();
+
                 }
         });
     }
