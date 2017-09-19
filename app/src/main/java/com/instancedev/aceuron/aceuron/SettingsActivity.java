@@ -6,14 +6,11 @@ import android.view.MotionEvent;
 
 public class SettingsActivity extends AppCompatActivity {
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
     }
-
 
     //dispatchTouchEvent gets called before onTouchEvent therefore you couldn't
     //sweep down while touching a button that's why i overrode dispatchTouchEvent which handles
@@ -39,7 +36,5 @@ public class SettingsActivity extends AppCompatActivity {
         }
 
         return true;
-
     }
-
 }

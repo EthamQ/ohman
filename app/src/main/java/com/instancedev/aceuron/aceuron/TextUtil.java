@@ -155,10 +155,6 @@ public class TextUtil {
         return notes;
     }
 
-
-
-
-
     public static void editNote(Context c, int id, String title, String content){
         NotesDBUtil notesDB = new NotesDBUtil(c);
         SQLiteDatabase db = notesDB.getReadableDatabase();
@@ -176,10 +172,6 @@ public class TextUtil {
 
         int amountOfUpdatedColumns = db.update("notes", newValues, whereClause, whereArgs);
     }
-
-
-
-
 
     public static List<Note> getNotesById(Context c, int id) {
         NotesDBUtil notesDB = new NotesDBUtil(c);
@@ -338,5 +330,4 @@ public class TextUtil {
         }
         return "";
     }
-
 }

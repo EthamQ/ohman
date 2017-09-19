@@ -35,14 +35,11 @@ public class NotesFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_notes, container, false);
         init();
         return view;
-
     }
-
 
     public static NotesFragment newInstance(){
         return new NotesFragment();
     }
-
 
     //refresh the ArrayAdapter in the LiestView after editing its values
     public void refreshArrayAdapter(){
@@ -51,7 +48,12 @@ public class NotesFragment extends Fragment {
         listViewAdapter.notifyDataSetChanged();
     }
 
-    //
+    @Override
+    public void onResume() {
+        super.onResume();
+        refreshArrayAdapter();
+    }
+
     public void init(){
         //initializing ArrayList and ArrayAdapter
         listViewItems = new ArrayList<>();
@@ -65,7 +67,6 @@ public class NotesFragment extends Fragment {
         addNote = (Button) view.findViewById(R.id.AddNoteButton);
         listview = (ListView) view.findViewById(R.id.listView);
 
-
         //Add all public notes to the ArrayAdapter to display their title
         List<TextUtil.Note> notes = TextUtil.getAllNotes(this.getContext(), false);
         for(TextUtil.Note n : notes) {
@@ -75,22 +76,15 @@ public class NotesFragment extends Fragment {
         //Add ArrayAdapter to ListView
         listview.setAdapter(listViewAdapter);
 
-        //pass this fragment to EditNoteActivity and NewNoteActivity
-        //so it can refresh the array adapter after updating its values
-        EditNoteActivity.passFragment(this);
-        NewNoteActivity.passFragment(this);
-
-
         //addNote Button -> startActivity(NewNoteActivity)
         addNote.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                startActivity(new Intent(getActivity(), NewNoteActivity.class));
+                    Intent intent = new Intent(getActivity(), NewNoteActivity.class);
+                    intent.putExtra("encrypted", false);
+                    startActivity(intent);
             }
         });
-
-
-
 
         //If you click on a item of the ArrayAdapter it directs you to EditNoteActivity where you can
         //see what you have previously written and saved
@@ -99,14 +93,15 @@ public class NotesFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 TextUtil.Note n = (TextUtil.Note) parent.getItemAtPosition(position);
-                EditNoteActivity.setText(n.title, n.content);
-                EditNoteActivity.setNoteID(n.id);
-                startActivity(new Intent(getActivity(), EditNoteActivity.class));
+                Intent intent = new Intent(getActivity(), EditNoteActivity.class);
+                intent.putExtra("encrypted", false);
+                intent.putExtra("id", n.id);
+                intent.putExtra("title", n.title);
+                intent.putExtra("content", n.content);
+                startActivity(intent);
             }
         });
-
     }
-
 
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name

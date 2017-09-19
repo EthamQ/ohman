@@ -45,7 +45,6 @@ NotesFragment.OnFragmentInteractionListener{
         mPager.setAdapter(mPagerAdapter);
 
         setCurrentItem(1, true);
-
     }
 
     public void setCurrentItem (int item, boolean smoothScroll) {
@@ -76,7 +75,6 @@ NotesFragment.OnFragmentInteractionListener{
             return NUM_PAGES;
         }
 
-
         @Override
         public Fragment getItem(int position) {
             switch (position) {
@@ -92,12 +90,6 @@ NotesFragment.OnFragmentInteractionListener{
 
             }
             return new Fragment();
-
         }
     }
-
 }
-
-
-
-

@@ -49,6 +49,18 @@ public class NotesEncryptedFragment extends Fragment {
         return new NotesEncryptedFragment();
     }
 
+    public void refreshArrayAdapter(){
+        listViewAdapter.clear();
+        listViewAdapter.addAll(TextUtil.getAllNotes(getContext(), false));
+        listViewAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        refreshArrayAdapter();
+    }
+
     public void init(){
         listViewItems = new ArrayList<>();
         listViewAdapter = new ArrayAdapter<String>(
@@ -61,8 +73,9 @@ public class NotesEncryptedFragment extends Fragment {
         addNote.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                NewNoteActivity.encrypt();
-                startActivity(new Intent(getActivity(), NewNoteActivity.class));
+                Intent intent = new Intent(getActivity(), NewNoteActivity.class);
+                intent.putExtra("encrypted", true);
+                startActivity(intent);
             }
         });
 

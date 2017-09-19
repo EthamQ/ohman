@@ -13,25 +13,13 @@ import android.widget.Toast;
 public class NewNoteActivity extends AppCompatActivity {
 
     Button saveButton;
-    static boolean encrypted = false;
-
-    //pass a fragment to this class in order to access and update it
-    //(pass and refresh methods may be moved to a Util class later)
-    static NotesFragment fragment;
-    public static void passFragment(NotesFragment nf){
-        fragment = nf;
-    }
-
-    //method is invoked if this class is accessed through NotesEncryptedFragment
-    public static void encrypt(){
-        encrypted = true;
-    }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_newnote);
+
+        final boolean encrypted = getIntent().getBooleanExtra("encrypted", false);
 
         saveButton = (Button) findViewById(R.id.SaveButton);
 
@@ -39,33 +27,24 @@ public class NewNoteActivity extends AppCompatActivity {
         final EditText titleEditText = (EditText) findViewById(R.id.addTitle);
         final EditText contentEditText = (EditText) findViewById(R.id.addContent);
 
-
         //click listener saveButton
         saveButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                // TODO encryption checkbox
-                //set up the arguments before inserting the note into the database
-                NotesDBUtil notesDB = new NotesDBUtil(getApplicationContext());
-                String table = "notes";
-                String[] selArgs = new String[]{titleEditText.getText().toString()};
+            // TODO encryption checkbox
+            if(!titleEditText.getText().toString().isEmpty()){
+                //Add the note to the database
+                TextUtil.insertNote(
+                        getApplicationContext(),
+                        titleEditText.getText().toString(),
+                        contentEditText.getText().toString(),
+                        encrypted
+                );
 
-                if(!titleEditText.getText().toString().isEmpty()){
-                    //Add the note to the database
-                    TextUtil.insertNote(
-                            getApplicationContext(),
-                            titleEditText.getText().toString(),
-                            contentEditText.getText().toString(),
-                            encrypted
-                    );
-
-                    //refresh the NotesFragment and close this activity
-                    fragment.refreshArrayAdapter();
-                    finish();
-                }
-
-                else Toast.makeText(getApplicationContext(), "Choose a title", Toast.LENGTH_LONG).show();
-
+                finish();
+            } else {
+                Toast.makeText(getApplicationContext(), "Choose a title", Toast.LENGTH_LONG).show();
+            }
             }
         });
     }

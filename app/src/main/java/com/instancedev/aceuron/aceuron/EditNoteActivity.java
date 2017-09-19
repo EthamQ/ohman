@@ -17,45 +17,23 @@ import java.util.List;
 
 public class EditNoteActivity extends AppCompatActivity {
 
-    private static String TITLE = "Default";
-    private static String CONTENT = "Default";
-    static int id;
-
     Button save;
     Button delete;
-
-
-    //Retrieve arguments from the NotesFragment
-    public static void setText(String title, String content){
-        TITLE = title;
-        CONTENT = content;
-
-    }
-
-    public static void setNoteID(int noteID){
-        id = noteID;
-    }
-
-    //pass a fragment to this class in order to access and update it
-    //(pass and refresh methods may be moved to a Util class later)
-    static NotesFragment fragment;
-    public static void passFragment(NotesFragment nf){
-        fragment = nf;
-    }
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_note);
 
+        final int id = getIntent().getIntExtra("id", 0);
+        String title = getIntent().getStringExtra("title");
+        String content = getIntent().getStringExtra("content");
+
         //Display the previous saved title and content
         final EditText titleEditText = (EditText) findViewById(R.id.editTitle);
-        titleEditText.setText(TITLE);
+        titleEditText.setText(title);
         final EditText contentEditText = (EditText) findViewById(R.id.editContent);
-        contentEditText.setText(CONTENT);
+        contentEditText.setText(content);
 
         save = (Button) findViewById(R.id.SaveButtonEdit);
         delete = (Button) findViewById(R.id.DeleteButtonEdit);
@@ -65,16 +43,10 @@ public class EditNoteActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(!titleEditText.getText().toString().isEmpty()) {
-                    //edit title and content from the note accessed via its id
-                    //NotesFragment uses setNoteID
                     TextUtil.editNote(getApplicationContext(), id, titleEditText.getText().toString(), contentEditText.getText().toString());
-
-                    //refresh the ListView ad close this activity
-                    fragment.refreshArrayAdapter();
                     finish();
                 }
                 else Toast.makeText(getApplicationContext(), "Choose a title", Toast.LENGTH_LONG).show();
-
             }
         });
 
@@ -89,18 +61,10 @@ public class EditNoteActivity extends AppCompatActivity {
                         .setIcon(android.R.drawable.ic_dialog_alert)
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
-                                //if user clicked positive
-
-                                //delete
                                 TextUtil.deleteNote(getApplicationContext(), id);
-                                //refresh the ListView and close this activity
-                                fragment.refreshArrayAdapter();
                                 finish();
                             }})
                         .setNegativeButton(android.R.string.no, null).show();
-
-
-
             }
         });
     }
