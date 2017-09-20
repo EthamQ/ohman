@@ -26,6 +26,8 @@ public class NotesFragment extends Fragment {
     ArrayList listViewItems;
     ArrayAdapter listViewAdapter;
 
+    final boolean encrypted = false;
+
     public NotesFragment(){
 
     }
@@ -44,7 +46,7 @@ public class NotesFragment extends Fragment {
     //refresh the ArrayAdapter in the LiestView after editing its values
     public void refreshArrayAdapter(){
         listViewAdapter.clear();
-        listViewAdapter.addAll(TextUtil.getAllNotes(getContext(), false));
+        listViewAdapter.addAll(TextUtil.getAllNotes(getContext(), encrypted));
         listViewAdapter.notifyDataSetChanged();
     }
 
@@ -68,7 +70,7 @@ public class NotesFragment extends Fragment {
         listview = (ListView) view.findViewById(R.id.listView);
 
         //Add all public notes to the ArrayAdapter to display their title
-        List<TextUtil.Note> notes = TextUtil.getAllNotes(this.getContext(), false);
+        List<TextUtil.Note> notes = TextUtil.getAllNotes(this.getContext(), encrypted);
         for(TextUtil.Note n : notes) {
             listViewAdapter.add(n);
         }
@@ -81,7 +83,7 @@ public class NotesFragment extends Fragment {
             @Override
             public void onClick(View v){
                     Intent intent = new Intent(getActivity(), NewNoteActivity.class);
-                    intent.putExtra("encrypted", false);
+                    intent.putExtra("encrypted", encrypted);
                     startActivity(intent);
             }
         });
@@ -94,7 +96,7 @@ public class NotesFragment extends Fragment {
                                     int position, long id) {
                 TextUtil.Note n = (TextUtil.Note) parent.getItemAtPosition(position);
                 Intent intent = new Intent(getActivity(), EditNoteActivity.class);
-                intent.putExtra("encrypted", false);
+                intent.putExtra("encrypted", encrypted);
                 intent.putExtra("id", n.id);
                 intent.putExtra("title", n.title);
                 intent.putExtra("content", n.content);

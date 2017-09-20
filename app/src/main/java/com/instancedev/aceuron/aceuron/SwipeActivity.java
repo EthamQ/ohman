@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.SparseArray;
 
 
 public class SwipeActivity extends FragmentActivity implements
@@ -17,16 +18,27 @@ NotesFragment.OnFragmentInteractionListener{
 
     private static final int NUM_PAGES = 4;
 
+
+
+
     /**
      * The pager widget, which handles animation and allows swiping horizontally to access previous
      * and next wizard steps.
      */
     private ViewPager mPager;
 
+
+    public int page(){
+        return mPager.getCurrentItem();
+    }
+
     /**
      * The pager adapter, which provides the pages to the view pager widget.
      */
     private PagerAdapter mPagerAdapter;
+
+
+
 
     @Override
     public void onFragmentInteraction(Uri uri){
@@ -74,6 +86,8 @@ NotesFragment.OnFragmentInteractionListener{
         public int getCount() {
             return NUM_PAGES;
         }
+
+
 
         @Override
         public Fragment getItem(int position) {

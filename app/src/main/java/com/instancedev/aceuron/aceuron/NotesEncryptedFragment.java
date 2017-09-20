@@ -4,12 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -34,6 +37,9 @@ public class NotesEncryptedFragment extends Fragment {
     ArrayList listViewItems;
     ArrayAdapter listViewAdapter;
 
+    final boolean encrypted = true;
+
+
     public NotesEncryptedFragment(){
 
     }
@@ -45,19 +51,38 @@ public class NotesEncryptedFragment extends Fragment {
         return view;
     }
 
+    public void createPasswordDialog(){
+
+        if(this.isVisible()) {
+            LayoutInflater li = LayoutInflater.from(getContext());
+            View promptsView = li.inflate(R.layout.activity_password, null);
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext());
+            //builder.setTitle("title");
+            builder.setCancelable(true);
+            //builder.setMessage("message");
+            builder.setView(promptsView);
+            AlertDialog a = builder.create();
+            a.show();
+        }
+    }
+
+
+
     public static NotesEncryptedFragment newInstance(){
         return new NotesEncryptedFragment();
     }
 
     public void refreshArrayAdapter(){
         listViewAdapter.clear();
-        listViewAdapter.addAll(TextUtil.getAllNotes(getContext(), false));
+        listViewAdapter.addAll(TextUtil.getAllNotes(getContext(), encrypted));
         listViewAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        createPasswordDialog();
         refreshArrayAdapter();
     }
 
@@ -65,7 +90,7 @@ public class NotesEncryptedFragment extends Fragment {
         listViewItems = new ArrayList<>();
         listViewAdapter = new ArrayAdapter<String>(
                 getActivity().getApplicationContext(),
-                android.R.layout.simple_spinner_item, listViewItems);
+                R.layout.array_adapter_design, R.id.list_text_color, listViewItems);
 
         addNote = (Button) view.findViewById(R.id.AddNoteButtonE);
         listview = (ListView) view.findViewById(R.id.listViewE);
@@ -74,12 +99,12 @@ public class NotesEncryptedFragment extends Fragment {
             @Override
             public void onClick(View v){
                 Intent intent = new Intent(getActivity(), NewNoteActivity.class);
-                intent.putExtra("encrypted", true);
+                intent.putExtra("encrypted", encrypted);
                 startActivity(intent);
             }
         });
 
-        List<TextUtil.Note> notes = TextUtil.getAllNotes(this.getContext(), true);
+        List<TextUtil.Note> notes = TextUtil.getAllNotes(this.getContext(), encrypted);
         for(TextUtil.Note n : notes) {
             listViewAdapter.add(n.title);
         }
