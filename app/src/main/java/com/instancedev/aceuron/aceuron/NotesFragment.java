@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class NotesFragment extends Fragment {
+public class NotesFragment extends Fragment implements FragmentInterface {
 
     View view;
 
@@ -29,6 +29,11 @@ public class NotesFragment extends Fragment {
     final boolean encrypted = false;
 
     public NotesFragment(){
+
+    }
+
+    @Override
+    public void fragmentIsVisible() {
 
     }
 
@@ -53,6 +58,8 @@ public class NotesFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+
+
         refreshArrayAdapter();
     }
 

@@ -27,7 +27,7 @@ import java.util.List;
  * Use the {@link NotesEncryptedFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class NotesEncryptedFragment extends Fragment {
+public class NotesEncryptedFragment extends Fragment implements FragmentInterface {
 
     View view;
 
@@ -79,10 +79,15 @@ public class NotesEncryptedFragment extends Fragment {
         listViewAdapter.notifyDataSetChanged();
     }
 
+
+    @Override
+    public void fragmentIsVisible() {
+        createPasswordDialog();
+    }
+
     @Override
     public void onResume() {
         super.onResume();
-        createPasswordDialog();
         refreshArrayAdapter();
     }
 

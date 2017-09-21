@@ -1,6 +1,5 @@
 package com.instancedev.aceuron.aceuron;
 
-import android.icu.util.Calendar;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,17 +8,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.SparseArray;
-
 
 public class SwipeActivity extends FragmentActivity implements
         MainButtonsFragment.OnFragmentInteractionListener, CalendarFragment.OnFragmentInteractionListener,
 NotesFragment.OnFragmentInteractionListener{
 
     private static final int NUM_PAGES = 4;
-
-
-
 
     /**
      * The pager widget, which handles animation and allows swiping horizontally to access previous
@@ -37,8 +31,9 @@ NotesFragment.OnFragmentInteractionListener{
      */
     private PagerAdapter mPagerAdapter;
 
-
-
+    public int getCurrentItem() {
+        return mPager.getCurrentItem();
+    }
 
     @Override
     public void onFragmentInteraction(Uri uri){
@@ -57,6 +52,24 @@ NotesFragment.OnFragmentInteractionListener{
         mPager.setAdapter(mPagerAdapter);
 
         setCurrentItem(1, true);
+
+        mPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(final int position, final float v, final int i2) {
+            }
+
+            @Override
+            public void onPageSelected(final int position) {
+                FragmentInterface fragment = (FragmentInterface) mPagerAdapter.instantiateItem(mPager, position);
+                if (fragment != null) {
+                    fragment.fragmentIsVisible();
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(final int position) {
+            }
+        });
     }
 
     public void setCurrentItem (int item, boolean smoothScroll) {
