@@ -290,7 +290,7 @@ public class TextUtil {
     }
 
     public static boolean passwordExists(Context c){
-        SharedPreferences sharedPreferences = c.getSharedPreferences("login_ data", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = c.getSharedPreferences("login_data", MODE_PRIVATE);
         return sharedPreferences.contains("password");
     }
 
