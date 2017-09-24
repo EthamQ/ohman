@@ -275,15 +275,23 @@ public class TextUtil {
     }
 
     /* Security related utilities */
-
-    public static void savePassword(String pw, Activity a) {
-        SharedPreferences sharedPreferences = a.getSharedPreferences("default", MODE_PRIVATE);
-        sharedPreferences.edit().putString("p", pw).apply();
+    public static void savePassword(String pw, Context c) {
+        SharedPreferences sharedPreferences = c.getSharedPreferences("login_data", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.putString("password", pw);
+        editor.commit();
+        //sharedPreferences.edit().putString("password", pw).apply();
     }
 
-    public static String loadPassword(String pw, Activity a) {
-        SharedPreferences sharedPreferences = a.getSharedPreferences("default", MODE_PRIVATE);
-        return sharedPreferences.getString("p", "");
+    public static String loadPassword(Context c) {
+        SharedPreferences sharedPreferences = c.getSharedPreferences("login_data", MODE_PRIVATE);
+        return sharedPreferences.getString("password", "");
+    }
+
+    public static boolean passwordExists(Context c){
+        SharedPreferences sharedPreferences = c.getSharedPreferences("login_ data", MODE_PRIVATE);
+        return sharedPreferences.contains("password");
     }
 
     public static SecretKeySpec getSecretKey(String pw) {

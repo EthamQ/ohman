@@ -79,7 +79,11 @@ NotesFragment.OnFragmentInteractionListener{
             // If the user is currently looking at the first step, allow the system to handle the
             // Back button. This calls finish() on this activity and pops the back stack.
             super.onBackPressed();
-        } else {
+        }
+        else if(mPager.getCurrentItem() == 0){
+            mPager.setCurrentItem(1);
+        }
+        else {
             // Otherwise, select the previous step.
             mPager.setCurrentItem(mPager.getCurrentItem() - 1);
         }

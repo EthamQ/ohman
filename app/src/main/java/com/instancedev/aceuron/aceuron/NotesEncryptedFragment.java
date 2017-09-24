@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +32,9 @@ public class NotesEncryptedFragment extends Fragment implements FragmentInterfac
 
     View view;
 
+    //Access activity_password.xml
+    View passwordView;
+
     Button addNote;
     ListView listview;
 
@@ -40,6 +44,7 @@ public class NotesEncryptedFragment extends Fragment implements FragmentInterfac
     final boolean encrypted = true;
 
 
+
     public NotesEncryptedFragment(){
 
     }
@@ -47,6 +52,7 @@ public class NotesEncryptedFragment extends Fragment implements FragmentInterfac
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle){
         view = inflater.inflate(R.layout.fragment_notes_encrypted, container, false);
+        passwordView = inflater.inflate(R.layout.activity_password, null);
         init();
         return view;
     }
@@ -54,14 +60,43 @@ public class NotesEncryptedFragment extends Fragment implements FragmentInterfac
     public void createPasswordDialog(){
 
         if(this.isVisible()) {
-            LayoutInflater li = LayoutInflater.from(getContext());
-            View promptsView = li.inflate(R.layout.activity_password, null);
+            LayoutInflater li2 = LayoutInflater.from(getContext());
+            View promptsView2 = li2.inflate(R.layout.activity_password, null);
+
+            final EditText enterPW = (EditText) passwordView.findViewById((R.id.enter_password));
+            EditText setPW = (EditText) passwordView.findViewById((R.id.set_password));
+            Button enterPWButton = (Button) passwordView.findViewById(R.id.enter_password_button);
+            Button setPWButton = (Button) passwordView.findViewById(R.id.set_password_button);
+
+            enterPWButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(TextUtil.passwordExists(getContext())){
+                    if (TextUtil.loadPassword(getContext()).equals(enterPW.getText().toString())) {
+                        //TODO: show notes
+                    } else {
+                        Toast.makeText(getContext(), "Wrong password", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else{
+                        Toast.makeText(getContext(), "Set a password first", Toast.LENGTH_SHORT).show();
+                    }
+                    }
+                    //else{
+                    //    Toast.makeText(getContext(), "Set a password first", Toast.LENGTH_SHORT).show();
+                    //}
+
+               // }
+            });
+
+
+
 
             AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext());
-            //builder.setTitle("title");
+            builder.setTitle("Authentification");
             builder.setCancelable(true);
-            //builder.setMessage("message");
-            builder.setView(promptsView);
+            builder.setMessage("Password to confirm you're not some kind of weirdo who just wants to have a look at my private stuff");
+            builder.setView(passwordView);
             AlertDialog a = builder.create();
             a.show();
         }
