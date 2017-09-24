@@ -13,7 +13,7 @@ import android.widget.Toast;
 import org.w3c.dom.Text;
 
 
-public class OverviewFragment extends Fragment {
+public class OverviewFragment extends Fragment implements FragmentInterface {
 
    float y1, y2;
     float x1, x2;
@@ -69,5 +69,10 @@ public class OverviewFragment extends Fragment {
 
     public static OverviewFragment newInstance() {
         return new OverviewFragment();
+    }
+
+    @Override
+    public void fragmentIsVisible() {
+
     }
 }

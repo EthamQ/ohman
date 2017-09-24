@@ -14,17 +14,13 @@ public class SwipeActivity extends FragmentActivity implements
 NotesFragment.OnFragmentInteractionListener{
 
     private static final int NUM_PAGES = 4;
+    private static final int FIRST_PAGE = 1;
 
     /**
      * The pager widget, which handles animation and allows swiping horizontally to access previous
      * and next wizard steps.
      */
     private ViewPager mPager;
-
-
-    public int page(){
-        return mPager.getCurrentItem();
-    }
 
     /**
      * The pager adapter, which provides the pages to the view pager widget.
@@ -51,9 +47,10 @@ NotesFragment.OnFragmentInteractionListener{
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mPager.setAdapter(mPagerAdapter);
 
-        setCurrentItem(1, true);
+        //First screen to be displayed on the screen
+        setCurrentItem(FIRST_PAGE, true);
 
-        mPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(final int position, final float v, final int i2) {
             }
@@ -78,7 +75,7 @@ NotesFragment.OnFragmentInteractionListener{
 
     @Override
     public void onBackPressed() {
-        if (mPager.getCurrentItem() == 0) {
+        if (mPager.getCurrentItem() == FIRST_PAGE) {
             // If the user is currently looking at the first step, allow the system to handle the
             // Back button. This calls finish() on this activity and pops the back stack.
             super.onBackPressed();

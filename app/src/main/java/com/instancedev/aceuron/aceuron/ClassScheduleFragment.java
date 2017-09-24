@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ClassScheduleFragment extends Fragment {
+public class ClassScheduleFragment extends Fragment implements FragmentInterface {
 
     View view;
 
@@ -66,5 +66,10 @@ public class ClassScheduleFragment extends Fragment {
                 }
             }
         });
+    }
+
+    @Override
+    public void fragmentIsVisible() {
+
     }
 }
